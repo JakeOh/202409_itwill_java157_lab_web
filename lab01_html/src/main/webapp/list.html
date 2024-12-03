@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lab01</title>
+    </head>
+    <body>
+        <a href="index.html">인덱스 페이지</a>
+        
+        <h1>HTML 리스트</h1>
+        
+        <h2>순서가 없는 리스트(unordered list)</h2>
+        <ul style="list-style: circle;">
+            <!-- ul 태그의 style 속성 중에서 list-style의 기본값은 disc. 
+              list-style 특성 값을 none으로 설정하면 bullet 이미지가 사라짐. -->
+            <!-- 리스트 아이템(list item) -->
+            <li>1승</li>
+            <li>모아나2</li>
+            <li>소방관</li>
+            <li>위키드</li>
+        </ul>
+        
+        <h2>중첩 리스트</h2>
+        
+        <ul>
+            <li>
+                한국영화
+                <ul>
+                    <li>1승</li>
+                    <li>소방관</li>
+                </ul>
+            </li>
+            <li>
+                애니메이션
+                <ul>
+                    <li>모아나2</li>
+                    <li>위키드</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <h2>순서가 있는 리스트(ordered list)</h2>
+        
+        <ol style="list-style: lower-alpha;">
+            <!-- ol 태그의 style 속성 중에서 list-style의 기본값은 decimal(숫자) -->
+            <li>1승</li>
+            <li>모아나2</li>
+            <li>소방관</li>
+            <li>위키드</li>
+        </ol>
+        
+    </body>
+</html>
