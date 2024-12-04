@@ -30,11 +30,57 @@
         
         <h2>여러가지 입력 타입</h2>
         <form action="result.html"> <!-- method 속성을 생략하면 GET 방식. -->
-            <input type="text" name="userid" placeholder="아이디" required />
+            <input type="text" name="userid" placeholder="아이디" required autofocus />
             <br />
             <input type="password" name="userpw" placeholder="비밀번호" required />
             <br />
             <input type="email" name="email" placeholder="이메일" />
+            <br />
+            <input type="number" name="age" placeholder="나이" />
+            <br />
+            <input type="date" name="birthday" />
+            <br />
+            <input type="datetime-local" name="createdTime" />
+            <br />
+            
+            <!-- 라디오버튼 -->
+            <input type="radio" name="ad" value="T" id="radioAccept" />
+            <label for="radioAccept">광고 메일 수신 허용</label>
+            <input type="radio" name="ad" value="F" id="radioDeny" checked />
+            <label for="radioDeny">광고 메일 수신 거부</label>
+            <br />
+            <input type="radio" name="gender" value="M" id="rbMale" />
+            <label for="rbMale">남성</label>
+            <input type="radio" name="gender" value="F" id="rbFemale" />
+            <label for="rbFemale">여성</label>
+            <input type="radio" name="gender" value="U" id="rbUnknown" />
+            <label for="rbUnknown">모름</label>
+            <br />
+            
+            <!-- 체크박스 -->
+            <input type="checkbox" name="hobby" value="1" id="cbMovie" />
+            <label for="cbMovie">영화</label>
+            <input type="checkbox" name="hobby" value="2" id="cbMusic" />
+            <label for="cbMusic">음악</label>
+            <input type="checkbox" name="hobby" value="3" id="cbReading" />
+            <label for="cbReading">독서</label>
+            <input type="checkbox" name="hobby" value="4" id="cbCoding" />
+            <label for="cbCoding">코딩</label>
+            <input type="checkbox" name="hobby" value="5" id="cbAlcohol" />
+            <label for="cbAlcohol">음주가무</label>
+            <br />
+            
+            <!-- 콤보박스 -->
+            <select name="mobile">
+                <option value="S">SKT</option>
+                <option value="K">KT</option>
+                <option value="L">LGU+</option>
+                <option value="A">알뜰폰</option>
+            </select>
+            <br />
+            
+            <!-- 여러 줄 입력 상자(textarea) -->
+            <textarea rows="5" cols="40" name="memo" placeholder="메모"></textarea>
             <br />
             
             <input type="submit" value="제출" /> <!-- 클라이언트가 서버로 양식 데이터를 제출 -->
