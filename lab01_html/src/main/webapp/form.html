@@ -28,6 +28,19 @@
             <input type="submit" value="로그인" />
         </form>
         
+        <h2>여러가지 입력 타입</h2>
+        <form action="result.html"> <!-- method 속성을 생략하면 GET 방식. -->
+            <input type="text" name="userid" placeholder="아이디" required />
+            <br />
+            <input type="password" name="userpw" placeholder="비밀번호" required />
+            <br />
+            <input type="email" name="email" placeholder="이메일" />
+            <br />
+            
+            <input type="submit" value="제출" /> <!-- 클라이언트가 서버로 양식 데이터를 제출 -->
+            <input type="reset" value="취소" /> <!-- 클라이언트가 양식 데이터를 초기화 -->
+        </form>
+        
     </body>
 </html>
 
