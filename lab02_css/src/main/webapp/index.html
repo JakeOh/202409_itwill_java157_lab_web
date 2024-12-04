@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <title>Lab2 CSS</title>
+        
+        <!-- 외부 CSS 파일 링크 -->
+        <link rel="stylesheet" href="css/mystyle.css" />
+        
+        <!-- 내부 CSS 작성 -->
+        <style>
+            div {
+                border: 2px dotted red;
+            }
+        </style>
+        <!-- 외부 CSS 다음에 내부 CSS를 작성한 경우에는 나중에 설정된 값이 적용됨. -->
+        
     </head>
     <body>
         <main> <!-- 웹 페이지의 주요 영역(main division)이라는 의미를 갖는 태그 -->
             <section> <!-- 웹 페이지의 섹션 영역(section division)이라는 의미를 갖는 태그 -->
                 <h1>CSS</h1>
                 <h2>Cascading Style Sheet</h2>
+                
+                <div>Division 1</div>
+                <div>Division 2</div>
+                <div style="border: 2px dashed darkgreen;">Division 3</div>
+            </section>
+            
+            <section>
+                <h2>목차</h2>
+                <ul>
+                    <li>
+                        <a href="selector1.html">선택자 1</a>
+                    </li>
+                </ul>
             </section>
         </main>
     </body>
