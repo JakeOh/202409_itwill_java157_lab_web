@@ -48,7 +48,26 @@
                 width: 80px; /* inline 요소는 width를 변경할 수 없지만 */
                 display: inline-block; /* display 특성이 block 이거나 또는 inline-block이면 크기 변경이 가능 */
                 text-align: center;
+                border-radius: 8px; /* 테두리선 모서리의 반지름. 숫자가 클 수로 곡선. */
             }
+            /*
+              CSS display property(특성):
+              1. block
+                 - div, main, nav, section, ul, li, table, tr, ...
+                 - 이전 요소의 아래쪽에 배치.
+                 - width(가로), height(세로)를 변경할 수 있음.
+                 - margin, padding을 변경할 수 있음.
+              2. inline
+                 - span, strong, em, a, ...
+                 - 이전 요소의 오른쪽에 배치.
+                 - width, height를 변경할 수 없음!
+                 - margin, padding은 변경할 수 있음.
+              3. inline-block
+                 - img, ...
+                 - inline 배치 특성: 이전 요소의 오른쪽에 배치.
+                 - block (크기) 특성: width, height를 변경할 수 있음.
+              4. none: 화면에 배치(display)하지 않음. 요소가 차지하는 크기가 없음.
+            */
             
             a#link-daum:hover {
                 background-color: SlateBlue;
