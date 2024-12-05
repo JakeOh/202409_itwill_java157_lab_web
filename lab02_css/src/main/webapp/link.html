@@ -3,6 +3,57 @@
     <head>
         <meta charset="UTF-8" />
         <title>Lab02 CSS</title>
+        
+        <style>
+            div {
+                margin-top: 16px;
+            }
+            
+            /*
+              - pseudo selector(가상 선택자): 이벤트 또는 특정 조건을 만족하는 요소(들)을 찾는 방법.
+              - (문법) selector:pseudo-selector
+              - 가상 선택자의 종류
+                o. visited: 방문했던 사이트. 브라우저의 방문 기록(history)에 저장된 사이트.
+                o. link: 방문 기록이 없는 사이트.
+                o. hover: 마우스가 요소 위에 있을 때.
+                o. active: 마우스 버튼을 누르고 있을 때.
+                o. nth-child(arg): 조건을 만족하는 자식 요소(들)을 찾을 때.
+                ...
+            */
+            
+            /* 아이디가 link-naver인 a 태그 요소의 글자색 설정, 밑줄 삭제. */
+            a#link-naver {
+                color: black;
+                text-decoration: none;
+            }
+            
+            /* 아이디가 link-naver인 a 태그 요소 위에 마우스가 위치했을 때 */
+            a#link-naver:hover {
+                color: blue;
+                font-weight: bold;
+            }
+            
+            /* 아이디가 link-naver인 태그 요소를 마우스 왼쪽 버튼으로 클릭하고 있을 때 */
+            a#link-naver:active {
+                color: red;
+            }
+            
+            /* 아이디가 link-daum인 a 태그 요소의 스타일들을 설정 */
+            a#link-daum {
+                text-decoration: none;
+                background-color: DodgerBlue;
+                color: white;
+                font-weight: bold;
+                padding: 4px 8px; /* padding-top -> right -> bottom -> left */
+                width: 80px; /* inline 요소는 width를 변경할 수 없지만 */
+                display: inline-block; /* display 특성이 block 이거나 또는 inline-block이면 크기 변경이 가능 */
+                text-align: center;
+            }
+            
+            a#link-daum:hover {
+                background-color: SlateBlue;
+            }
+        </style>
     </head>
     <body>
         <nav>
@@ -13,11 +64,11 @@
             <h2>링크 스타일</h2>
             
             <div>
-                <a href="https://www.naver.com">네이버</a>
+                <a id="link-naver" href="https://www.naver.com">네이버</a>
             </div>
             
             <div>
-                <a href="https://www.daum.net">다음</a>
+                <a id="link-daum" href="https://www.daum.net">다음</a>
             </div>
         </main>
     </body>
