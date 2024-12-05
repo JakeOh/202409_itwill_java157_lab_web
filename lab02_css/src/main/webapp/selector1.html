@@ -23,6 +23,16 @@
             #div3 {
                 color: LightGray; /* lightgray */
             }
+            
+            /* tag#id.class */
+            p.color-white { /* p tag 요소들 중에서 클래스가 color-white인 요소(들) */
+                color: white;
+                background-color: DarkGray;
+            }
+            
+            p#p3 { /* p tag 요소들 중에서 아이디가 p3인 요소 */
+                color: red;
+            }
         </style>
         
     </head>
@@ -39,6 +49,10 @@
             <div class="color-white">Division 2</div>
             <div id="div3">Division 3</div>
             <div id="div3">Division 4</div>
+            
+            <p class="color-white">Paragraph 1</p>
+            <p class="color-white">Paragraph 2</p>
+            <p id="p3">Paragraph 3</p>
         </main>
     </body>
 </html>
