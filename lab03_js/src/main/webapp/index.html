@@ -32,7 +32,7 @@
             
             <section>
                 <h2>HTML 스타일 변경</h2>
-                <div id="box2">
+                <div id="box2" onclick="changeStyle()">
                     여기는 Box2 입니다.
                 </div>
             </section>
@@ -46,19 +46,37 @@
         
         // JavaScript 인라인 주석(inline comment)
         
-        const content1 = '여기는 Box1 입니다.';
+        // JS 변수 선언 & 초기화:
+        // const 변수이름 = 값; --> 값을 변경할 수 없는 변수(상수) 선언, 초기화.
+        // let 변수이름 = 값; --> 값을 변경할 수 있는 변수 선언, 초기화.
+        // JS는 변수를 선언할 때 변수의 타입을 명시하지 않음!
+        // JS는 문자열에서 큰따옴표("")와 작은따옴표('')를 모두 사용할 수 있음.
+        const content1 = "여기는 Box1 입니다.";
         const content2 = 'Hello, <strong>JavaScript</strong>!';
         let toggle = true;
         
+        // JS 함수 선언:
+        // function 함수이름(파라미터 선언) { ... }
+        // 함수 이름 앞에 리턴 타입을 명시하지 않음!
         function changeContent() {
+            // 아이디가 box1인 HTML 요소를 찾음.
             const box1 = document.querySelector('#box1');
             if (toggle) {
+                // HTML 요소의 컨텐트(innerHTML)를 변경.
                 box1.innerHTML = content2;
                 toggle = false;
             } else {
                 box1.innerHTML = content1;
                 toggle = true;
             }
+        }
+        
+        function changeStyle() {
+            const box2 = document.querySelector('div#box2');
+            box2.style.backgroundColor = 'DodgerBlue';
+            box2.style.color = 'white';
+            box2.style.fontSize = '200%';
+            box2.style.fontWeight = 'bold';
         }
         </script>
     </body>
