@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Lab03 JS</title>
+        <style>
+            section {
+                margin: 4px;
+                border: 1px solid LightGray;
+                border-radius: 4px;
+            }
+            
+            section > div {
+                border: 2px solid black;
+                margin: 16px;
+                padding: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>JavaScript 소개</h1>
+        </header>
+        
+        <main>
+            <section>
+                <h2>HTML 컨텐트 변경</h2>
+                <div id="box1" onclick="changeContent()">
+                    여기는 Box1 입니다.
+                </div>
+            </section>
+            
+            <section>
+                <h2>HTML 스타일 변경</h2>
+                <div id="box2">
+                    여기는 Box2 입니다.
+                </div>
+            </section>
+        </main>
+        
+        <!-- HTML 파일 안에서 JS 작성하는 방법 -->
+        <script>
+        /*  
+         * JavaScript 블록 주석(block comment)
+         */
+        
+        // JavaScript 인라인 주석(inline comment)
+        
+        const content1 = '여기는 Box1 입니다.';
+        const content2 = 'Hello, <strong>JavaScript</strong>!';
+        let toggle = true;
+        
+        function changeContent() {
+            const box1 = document.querySelector('#box1');
+            if (toggle) {
+                box1.innerHTML = content2;
+                toggle = false;
+            } else {
+                box1.innerHTML = content1;
+                toggle = true;
+            }
+        }
+        </script>
+    </body>
+</html>
