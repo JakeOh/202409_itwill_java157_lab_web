@@ -2,6 +2,10 @@
  * array_function.html 파일에 포함.
  * 
  * JS 배열 객체의 함수(메서드)들.
+ * - mutable method: 원본 배열을 바꾸는 메서드.
+ *   (예) push, pop, sort, ...
+ * - immutable method: 원본 배열을 바꾸지 않고, 새로운 배열을 리턴하는 메서드.
+ *   (예) concat, slice, toSorted, ...
  */
 
 const arr = [ 1, 2, 3 ];
@@ -29,4 +33,32 @@ console.log(result); //-> [1, 2]
 result = arr.slice(0, -1);
 console.log(result);
 
+const arr2 = [10, 100, -1, 9, 80];
+console.log(arr2);
 
+// Array.toSorted(): 오름차순으로 정렬된 "새로운" 배열을 리턴. 원본 배열이 바뀌지 않음!
+// - 배열의 아이템들을 "문자열로 변환"한 후 크기를 비교함. 사전식 순서.
+result = arr2.toSorted();
+console.log(arr2); //-> 원본 배열을 바뀌지 않음.
+console.log(result); //-> 정렬된 배열이 리턴됨.
+
+// Array.toSorted(callback): 배열 아이템의 크기 비교에서 사용될 콜백 (함수)를 아규먼트로 전달.
+// callback (x, y) => x가 크면 양수, y가 크면 음수, x와 y가 같으면 0을 리턴.
+result = arr2.toSorted((x, y) => x - y);
+console.log(result);
+
+// Array.sort(): 원본 배열의 아이템 순서를 오름차순으로 변경. 원본 배열이 바뀜!
+// - 배열의 아이템들을 "문자열로 변환"한 수 크기 비교. 사전식 순서.
+arr2.sort();
+console.log(arr2);
+
+// Array.sort(callback): 배열의 아이템 크기 비교에서 사용되는 콜백 (함수)를 아규먼트로 전달.
+arr2.sort((x, y) => x - y);
+console.log(arr2);
+
+const numbers = [ 1, 2, 3, 4, 5, 6 ];
+
+// 배열 numbers의 아이템들 중에서 홀수들로만 이루어진 새로운 배열을 만들고 출력.
+// 배열 numbers 아이템들의 제곱을 아이템으로 갖는 새로운 배열을 만들고 출력.
+// 배열 numbers의 아이템들 중에서 홀수들의 제곱을 아이템으로 갖는 새로운 배열을 만들고 출력.
+// 배열 numbers의 모은 아이템들의 합계를 계산하고 출력.
