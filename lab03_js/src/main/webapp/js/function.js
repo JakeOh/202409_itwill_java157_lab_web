@@ -9,6 +9,13 @@
  * 
  * 함수 이름 앞에 리턴 타입을 선언하지 않음.
  * 파라미터를 선언할 때는 const, let, var 키워드를 사용하지 않음!
+ * 
+ * JS 함수는 객체(object)!!
+ * 1. 프로퍼티(property)를 가질 수 있음. (예) arguments
+ * 2. 변수에 할당할 수 있음.
+ * 3. 함수를 호출할 때 아규먼트로 함수 (객체)를 전달할 수 있음.
+ * 4. 함수는 함수 (객체)를 리턴할 수 있음.
+ * 5. 함수 내부에서 다른 함수를 선언(정의)할 수 있음.
  */
 
 // 함수 선언
@@ -44,3 +51,34 @@ function testArgs() {
 testArgs(); //-> arguments: 아이템 개수가 0인 배열
 testArgs('Hello'); //-> arguments: 아이템이 1개인 배열
 testArgs(1, '안녕'); //-> arguements: 아이템 2개를 갖는 배열
+
+// 숫자 2개를 전달받아서 뺄셈 결과를 리턴하는 함수.
+function subtract(x, y) {
+    return x - y;
+}
+
+result = subtract(1, 2);
+console.log(`result = ${result}`);
+
+// default parameter: 기본값이 설정된 파라미터.
+function multiply(x, y=1) {
+    console.log(`mutiply 함수 파라미터: x = ${x}, y = ${y}`);
+    return x * y;
+}
+
+result = multiply(2, 3); //-> 두번째 아규먼트는 파라미터 y에 저장됨.
+console.log(`result = ${result}`);
+
+result = multiply(2); //-> 두번째 아규먼트가 없는 경우에는 파라미터 y는 기본값이 사용됨.
+console.log(`result = ${result}`);
+
+// 함수 파라미터 destructuring assignment(구조분해 할당)
+function divide(x, y, ...rest) {
+    console.log(`divide 함수 파라미터: x = ${x}, y = ${y}, rest = ${rest}`);
+    return x / y;
+}
+
+result = divide(1, 2, 3, 4, 5);
+console.log(`result = ${result}`);
+
+
