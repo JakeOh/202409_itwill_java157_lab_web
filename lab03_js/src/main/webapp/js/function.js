@@ -126,8 +126,16 @@ function increase(n) {
     // return addN(1); //-> 함수 addN()의 리턴 값을 리턴.
 }
 
-// addN(10); //-> 지역 함수 이름은 외부에서 호출할 수 없음.
+// addN(10); //-> 내부 함수 이름은 외부에서 호출할 수 없음.
 
-const increaseTwo = increase(2);
+const increaseTwo = increase(2); //-> (x) => x + 2
 console.log(increaseTwo);
 console.log(increaseTwo(100));
+
+const increaseTen = increase(10); //-> (x) => x + 10
+console.log(increaseTen(100));
+
+console.log(increase(1)(100));
+// increase: 함수 이름(객체)
+// increase(1): 함수 increase()를 호출한 리턴 값. 함수 객체.
+// increase(1)(100); 함수 increase(1)가 리턴한 함수를 호출.
