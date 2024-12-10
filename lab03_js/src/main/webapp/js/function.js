@@ -81,4 +81,53 @@ function divide(x, y, ...rest) {
 result = divide(1, 2, 3, 4, 5);
 console.log(`result = ${result}`);
 
+// 함수를 변수에 할당.
+// const plus = add(); //-> 함수 add()의 리턴 값을 변수 plus에 할당.
+const plus = add; //-> 함수 add를 변수 plus에 할당.
+console.log(plus); //-> plus: 함수(function)
+console.log(plus(12, 34)); //-> plus() 함수의 리턴 값을 로그 출력.
 
+// 익명 함수. 이름이 없는 함수(anonymous function):
+const minus = function (x, y) {
+    return x - y;
+};
+
+console.log(minus); //-> minus: 함수
+console.log(minus(1, 2)); //-> 함수 minus() 호출하고 그 리턴 값을 출력.
+
+// 화살표 함수(arrow function): 익명 함수를 간단히 표현하는 문법. 자바의 람다 표현식과 비슷.
+// (파라미터 선언, ...) => { 코드; }
+// (파라미터 선언, ...) => 리턴값
+const multiplication = (x, y) => x * y;
+console.log(multiplication);
+console.log(multiplication(2, 3));
+
+// 함수 (객체)를 아규먼트로 전달받는 함수:
+function calculate(x, y, op) {
+    return op(x, y); // 함수 op() 함수의 리턴 값을 리턴.
+}
+
+console.log(calculate(1, 2, divide));
+console.log(calculate(1, 2, function (x, y) { return (x + y) * 2; }));
+console.log(calculate(1, 2, (x, y) => (x - y) * 2));
+//-> 이벤트 리스너(핸들러)를 설정할 때 많이 사용되는 JS 코드 패턴.
+// 콜백(callback): (나중에 호출하기 위해서) 아규먼트로 전달되는 함수 객체.
+
+// 지역 함수(local function), 내부 함수: 함수 안에서 선언하는 함수.
+function increase(n) {
+    // 내부 함수 선언
+    function addN(x) {
+        // 내부(지역) 함수는 외부 함수에서 선언된 파라미터, 지역변수들을 사용할 수 있음.
+        return x + n;
+    }
+    
+    // 함수 (객체) 리턴.
+    return addN; // addN 함수 (객체)를 리턴.
+    // return addN(1); //-> 함수 addN()의 리턴 값을 리턴.
+}
+
+// addN(10); //-> 지역 함수 이름은 외부에서 호출할 수 없음.
+
+const increaseTwo = increase(2);
+console.log(increaseTwo);
+console.log(increaseTwo(100));
