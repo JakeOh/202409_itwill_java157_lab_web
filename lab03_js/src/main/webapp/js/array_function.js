@@ -56,9 +56,56 @@ console.log(arr2);
 arr2.sort((x, y) => x - y);
 console.log(arr2);
 
+// Array.forEach, Array.filter, Array.map, Array.reduce
 const numbers = [ 1, 2, 3, 4, 5, 6 ];
+console.log(numbers);
+// for (const x of numbers) {
+//     console.log(x);
+// }
+numbers.forEach(x => console.log(x)); // (x) => { console.log(x); }
 
 // 배열 numbers의 아이템들 중에서 홀수들로만 이루어진 새로운 배열을 만들고 출력.
-// 배열 numbers 아이템들의 제곱을 아이템으로 갖는 새로운 배열을 만들고 출력.
-// 배열 numbers의 아이템들 중에서 홀수들의 제곱을 아이템으로 갖는 새로운 배열을 만들고 출력.
+let odds = []; // 빈 배열 선언. 홀수들을 저장하기 위해서.
+for (const x of numbers) {
+    if (x % 2) {
+        odds.push(x);
+        // odds = odds.concat(x);
+    }
+}
+console.log(odds);
+
+// TODO: Array.filter 메서드를 사용.
+
+// 배열 numbers 아이템의 제곱들을 아이템으로 갖는 새로운 배열을 만들고 출력.
+let squares = []; // 아이템의 제곱을 저장하기 위한 빈 배열 선언.
+for (const x of numbers) {
+    squares = squares.concat(x * x);
+}
+console.log(squares);
+
+// TODO: Array.map 메서드 사용.
+
+// 배열 numbers의 아이템들 중에서 홀수의 제곱들을 아이템으로 갖는 새로운 배열을 만들고 출력.
+const oddSquares = []; // 홀수의 제곱들을 저장할 배열.
+for (const x of numbers) {
+    if (x % 2) {
+        oddSquares.push(x * x);
+    }
+}
+console.log(oddSquares);
+
+// TODO: Array.filter, Array.map 메서드를 연쇄 호출. numbers.filter().map();
+
 // 배열 numbers의 모은 아이템들의 합계를 계산하고 출력.
+let total = 0;
+for (const x of numbers) {
+    total += x;
+}
+console.log(total);
+
+// TODO: Array.reduce 메서드를 호출.
+
+// numbers의 모든 아이템들의 곱(1*2*3*4*5*6)을 계산하고 출력.
+// numbers의 아이템들 중에서 짝수들의 합(2 + 4 + 6)을 계산하고 출력.
+// numbers의 아이템의 제곱들의 합(1*1 + 2*2 + 3*3 + ...)을 계산하고 출력.
+// numbers의 아이템들 중에서 짝수의 제곱들의 합(2*2 + 4*4 + 6*6)을 계산하고 출력.
