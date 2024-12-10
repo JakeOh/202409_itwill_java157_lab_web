@@ -56,3 +56,21 @@ for (const item of movies) {
     html += `<li> ${item} </li>`;
 }
 list.innerHTML = html;
+
+// destructuring assignment(분해 할당)
+const array = [1, 2, 3];
+const [x, y, z] = array;
+output.innerHTML += `x = ${x}, y = ${y}, z = ${z} <br />`;
+
+// 배열의 아이템 개수보다 적은 destructuring assignment
+const [a, b] = array;
+output.innerHTML += `a = ${a}, b = ${b} <br />`;
+
+// 배열의 아이템 개수보다 많은 destructuring assignment
+const [c, d, e, f] = array;
+output.innerHTML += `c = ${c}, d = ${d}, e = ${e}, f = ${f} <br />`;
+
+// rest 연산자(...)를 사용한 destructuring assignment
+const [g, ...h] = array;
+output.innerHTML += `g = ${g}, h = ${h} <br />`;
+//-> g = 1, h = [2, 3]
