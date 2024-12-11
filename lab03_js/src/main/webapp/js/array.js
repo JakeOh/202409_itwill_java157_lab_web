@@ -57,7 +57,7 @@ for (const item of movies) {
 }
 list.innerHTML = html;
 
-// destructuring assignment(분해 할당)
+// destructuring assignment(구조분해 할당)
 const array = [1, 2, 3];
 const [x, y, z] = array;
 output.innerHTML += `x = ${x}, y = ${y}, z = ${z} <br />`;

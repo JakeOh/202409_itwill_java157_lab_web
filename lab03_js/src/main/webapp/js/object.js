@@ -51,7 +51,7 @@ console.log(score.mean());
 
 // 생성자 함수(constructor function): this 키워드를 사용해서 프로퍼티(들)을 선언하고,
 // 같은 프로퍼티(들)을 갖는 객체들을 생성할 수 있는 함수.
-function Score(html, css, js) {
+function Score(html=0, css=0, js=0) {
     // 필드
     this.html = html;
     this.css = css;
@@ -73,3 +73,34 @@ console.log(score1);
 console.log(score1.sum());
 console.log(score1.mean());
 
+const score2 = new Score();
+console.log(score2);
+console.log(score2.sum());
+console.log(score2.mean());
+
+// JS 객체는 for-in 구문에서 사용할 수 있음.
+const student = {
+    no: 123,
+    name: '홍길동',
+    grade: 1,
+    classNo: 1,
+};
+console.log(student);
+console.log(student['name']);
+
+// for-in 구문은 객체의 프로퍼티 이름들을 순회(iteration)함.
+for (const x in student) {
+    console.log(x, ':', student[x]); // (주의) student.x 문법 오류.
+}
+
+for (const x in score1) {
+    console.log(x, ':', score1[x]);
+}
+
+// JS 객체의 destructuring assignment(구조분해 할당)
+// const no = student.no;
+// const name = student.name;
+// const grade = student.grade;
+// const classNo = student.classNo;
+const { no, name, grade, classNo } = student;
+console.log(no, name, grade, classNo);
