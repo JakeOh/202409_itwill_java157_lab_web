@@ -22,3 +22,54 @@ console.log(person['phone'][1]);
 // 객체의 프로퍼티 값을 변경.
 person.age = 17;
 console.log(person);
+
+// JS 객체는, 객체가 생성된 이후에 새로운 프로퍼티를 동적인 추가할 수 있음!
+person.email = 'hgd@itwill.com';
+console.log(person);
+
+// 메서드를 갖는 객체:
+const score = {
+    // properties
+    html: 100,
+    css: 90,
+    js: 85,
+    // methods
+    sum: function () {
+        // 메서드에서 객체의 프로퍼티를 참조할 때 this 키워드를 사용해야 함!
+        return this.html + this.css + this.js;
+    },
+    mean: function () {
+        // 같은 객체의 다른 메서드를 호출할 때도 this 키워드를 사용해야 함!
+        return this.sum() / 3;
+    },
+};
+
+console.log(score);
+// 객체의 메서드 호출:
+console.log(score.sum());
+console.log(score.mean());
+
+// 생성자 함수(constructor function): this 키워드를 사용해서 프로퍼티(들)을 선언하고,
+// 같은 프로퍼티(들)을 갖는 객체들을 생성할 수 있는 함수.
+function Score(html, css, js) {
+    // 필드
+    this.html = html;
+    this.css = css;
+    this.js = js;
+    
+    // 메서드
+    this.sum = function () {
+        return this.html + this.css + this.js;
+    };
+    
+    this.mean = function () {
+        return this.sum() / 3;
+    };
+}
+
+// 생성자 함수 호출은 new 키워드를 사용해야 함.
+const score1 = new Score(100, 100, 50);
+console.log(score1);
+console.log(score1.sum());
+console.log(score1.mean());
+
