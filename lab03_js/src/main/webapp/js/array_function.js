@@ -74,7 +74,9 @@ for (const x of numbers) {
 }
 console.log(odds);
 
-// TODO: Array.filter 메서드를 사용.
+// Array.filter 메서드를 사용.
+result = numbers.filter(x => x % 2);
+console.log(result);
 
 // 배열 numbers 아이템의 제곱들을 아이템으로 갖는 새로운 배열을 만들고 출력.
 let squares = []; // 아이템의 제곱을 저장하기 위한 빈 배열 선언.
@@ -83,7 +85,9 @@ for (const x of numbers) {
 }
 console.log(squares);
 
-// TODO: Array.map 메서드 사용.
+// Array.map 메서드 사용.
+result = numbers.map(x => x * x);
+console.log(result);
 
 // 배열 numbers의 아이템들 중에서 홀수의 제곱들을 아이템으로 갖는 새로운 배열을 만들고 출력.
 const oddSquares = []; // 홀수의 제곱들을 저장할 배열.
@@ -94,7 +98,9 @@ for (const x of numbers) {
 }
 console.log(oddSquares);
 
-// TODO: Array.filter, Array.map 메서드를 연쇄 호출. numbers.filter().map();
+// Array.filter, Array.map 메서드를 연쇄 호출. numbers.filter().map();
+result = numbers.filter(x => x % 2).map(x => x * x);
+console.log(result);
 
 // 배열 numbers의 모은 아이템들의 합계를 계산하고 출력.
 let total = 0;
@@ -103,9 +109,13 @@ for (const x of numbers) {
 }
 console.log(total);
 
-// TODO: Array.reduce 메서드를 호출.
+// Array.reduce(callback, initialValue) 메서드를 호출.
+result = numbers.reduce((acc, cur) => acc + cur, 0);
+console.log(result);
 
 // numbers의 모든 아이템들의 곱(1*2*3*4*5*6)을 계산하고 출력.
+
+
 // numbers의 아이템들 중에서 짝수들의 합(2 + 4 + 6)을 계산하고 출력.
 // numbers의 아이템의 제곱들의 합(1*1 + 2*2 + 3*3 + ...)을 계산하고 출력.
 // numbers의 아이템들 중에서 짝수의 제곱들의 합(2*2 + 4*4 + 6*6)을 계산하고 출력.
