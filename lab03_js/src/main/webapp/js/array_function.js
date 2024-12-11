@@ -114,8 +114,26 @@ result = numbers.reduce((acc, cur) => acc + cur, 0);
 console.log(result);
 
 // numbers의 모든 아이템들의 곱(1*2*3*4*5*6)을 계산하고 출력.
+result = 1;
+for (const x of numbers) {
+    result = result * x; // result *= x;
+}
+console.log(result);
 
+result = numbers.reduce((before, current) => before * current, 1);
+console.log(result);
 
 // numbers의 아이템들 중에서 짝수들의 합(2 + 4 + 6)을 계산하고 출력.
+result = numbers.filter(x => x % 2 === 0).reduce((acc, cur) => acc + cur, 0);
+console.log(result);
+
 // numbers의 아이템의 제곱들의 합(1*1 + 2*2 + 3*3 + ...)을 계산하고 출력.
+result = numbers.map(x => x * x).reduce((acc, cur) => acc + cur, 0);
+console.log(result);
+
 // numbers의 아이템들 중에서 짝수의 제곱들의 합(2*2 + 4*4 + 6*6)을 계산하고 출력.
+result = numbers
+        .filter(x => x % 2 === 0)
+        .map(x => x * x)
+        .reduce((acc, cur) => acc + cur, 0);
+console.log(result);
