@@ -47,3 +47,13 @@ function printStudent({ name, ...rest }) {
 printStudent(student1);
 printStudent(student2);
 printStudent({ name: '아이티', no: 123, email: 'it@itwill.com' });
+
+// 지역변수를 사용해서 객체 생성 & 프로퍼티 초기화:
+const x = 1;
+const y = 2;
+const point1 = { x: x, y: y };
+console.log(point1);
+
+// 객체의 프로퍼티 이름을 지역 변수 이름과 동일하게 할 경우, 간단히 쓸 수 있음.
+const point2 = { x, y }; // [x, y] -> 배열
+console.log(point2);
