@@ -98,9 +98,67 @@ for (const x in score1) {
 }
 
 // JS 객체의 destructuring assignment(구조분해 할당)
-// const no = student.no;
-// const name = student.name;
-// const grade = student.grade;
-// const classNo = student.classNo;
-const { no, name, grade, classNo } = student;
-console.log(no, name, grade, classNo);
+// const stuNo = student.no;
+// const stuName = student.name;
+// const stuGrade = student.grade;
+// const stuClassNo = student.classNo;
+// const/let { propertyName: 변수선언, ... } = object;
+// 지역변수 이름을 프로퍼티 이름과 동일하게 선언할 경우, const/let { proeprtyName, ... } = object;
+const { no: stuNo, name: stuName } = student;
+console.log(stuNo, stuName);
+
+// const { no: no, name: name } = student;
+const { no, name } = student;
+console.log(no, name);
+
+// 객체의 구조분해 할당에서 rest 연산자(...)
+const { name: studentName, ...rest } = student;
+console.log(studentName);
+console.log(rest);
+
+// 클래스 선언과 객체 생성:
+class Rectangle {
+    // 생성자(constructor): 필드 선언과 초기화. 생성자 이름은 constructor.
+    constructor(width=0, height=0) {
+        this.width = width;
+        this.height = height;
+    }
+    
+    // 메서드 - function 키워드를 사용하지 않음!
+    area() {
+        return this.width * this.height;
+    }
+    
+    perimeter() {
+        return (this.width + this.height) * 2;
+    }
+}
+
+const rect1 = new Rectangle(); // 클래스 이름으로 생성자 호출
+console.log(rect1);
+console.log(rect1.area(), rect1.perimeter());
+
+const rect2 = new Rectangle(3, 4);
+console.log(rect2);
+console.log(rect2.area(), rect2.perimeter());
+
+// 원(Circle) 클래스 선언: 필드(radius), 메서드(area, perimeter)
+class Circle {
+    // 생성자
+    constructor(radius=0) {
+        this.radius = radius;
+    }
+    
+    // 메서드
+    area() {
+        return 3.14 * this.radius * this.radius;
+    }
+    
+    perimeter() {
+        return 2 * 3.14 * this.radius;
+    }
+}
+
+const circle = new Circle(10);
+console.log(circle);
+console.log(circle.area(), circle.perimeter());
