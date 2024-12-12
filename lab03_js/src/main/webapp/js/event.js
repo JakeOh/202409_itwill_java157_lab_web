@@ -28,5 +28,33 @@ document.addEventListener('DOMContentLoaded', function () {
         // itemInput 입력된 내용을 지움.
         itemInput.value = '';
     });
+	
+	// input#itemInput2 요소를 찾음.
+	const itemInput2 = document.querySelector('input#itemInput2');
+	
+	// itemInput2 요소에 'keydown' 이벤트 리스너를 설정.
+//	itemInput2.addEventListener('keydown', function (e) {});
+	itemInput2.addEventListener('keydown', (e) => {
+//		console.log(e); //-> KeyboardEvent
+		// e.key 프로퍼티: 어떤 키보드가 down이 됐는 지를 알려주는 프로퍼티.
+		// 'Enter'가 입력이 됐을 때, itemInput2에 입력된 문자열을  
+		// ul#itemList2에 <li>로 추가(append)하고 input의 내용은 지움.
+		if (e.key === 'Enter') {
+			const itemList2 = document.querySelector('ul#itemList2');
+			itemList2.innerHTML += `<li> ${itemInput2.value} </li>`;
+			itemInput2.value = '';
+		}
+	});
+	
+	// input#userid 요소를 찾음.
+	const userid = document.querySelector('input#userid');
+	
+	// userid에 'change' 이벤트 리스너를 설정.
+	userid.addEventListener('change', (e) => {
+//		console.log(e); //-> Event
+		// userid에 입력된 값을 div#result에 출력.
+		const result = document.querySelector('div#result');
+		result.innerHTML = `<span style="color: red;"> ${userid.value} </span>`;
+	});
     
 });
