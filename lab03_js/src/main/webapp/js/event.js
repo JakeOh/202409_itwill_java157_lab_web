@@ -57,4 +57,19 @@ document.addEventListener('DOMContentLoaded', function () {
 		result.innerHTML = `<span style="color: red;"> ${userid.value} </span>`;
 	});
     
+	// img#bulb 요소를 찾음.
+	const bulb = document.querySelector('img#bulb');
+	
+	// bulb 요소에 'mouseenter' 이벤트 리스너를 설정 -> 이미지를 bulb_on.gif로 교체.
+	bulb.addEventListener('mouseenter', () => {
+		bulb.src = 'images/bulb_on.gif';
+		bulb.alt = 'bulb_on';
+	});
+	
+	// bulb 요소에 'mouseleave' 이벤트 리스너를 설정 -> 이미지를 bulb_off.gif로 교체.
+	bulb.addEventListener('mouseleave', () => {
+		bulb.src = 'images/bulb_off.gif';
+		bulb.alt = 'bulb_off';
+	});
+	
 });
