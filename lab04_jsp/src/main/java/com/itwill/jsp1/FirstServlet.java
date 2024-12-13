@@ -15,6 +15,12 @@ import jakarta.servlet.http.HttpServletResponse;
 // 클라이언트에서 요청이 왔을 때 WAS는 web.xml에 작성된 서블릿 설정을 보고,
 // 요청 주소에 매핑된 서블릿 클래스의 doGet() 또는 doPost() 메서드를 호출함.
 // Servlet: Server + Applet. 서버에서 실행되는 작은 자바 프로그램.
+// 서블릿 컨테이너(Servlet container):
+// - 서블릿 객체를 생성/관리, 필요할 때 서블릿 객체의 메서드를 호출하는 프로그램.
+// 서블릿 설정: 서블릿 클래스와 요청 주소를 매핑 설정.
+// (1) web.xml 파일에서 <servlet>, <servlet-mapping>으로 설정.
+// (2) 각각의 서블릿 클래스에서 @WebServlet 애너테이션으로 설정.
+// (주의) 하나의 서블릿 클래스는 web.xml 또는 애너테이션 중 한가지 방법으로만 설정해야 됨.
 
 /**
  * Servlet implementation class FirstServlet
@@ -25,7 +31,9 @@ public class FirstServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FirstServlet() {}
+    public FirstServlet() {
+    	System.out.println("FirstServlet() 생성자 호출");
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
