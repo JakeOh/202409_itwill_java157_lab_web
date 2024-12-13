@@ -61,7 +61,7 @@ public class FirstServlet extends HttpServlet {
 				.append("	</head>")
 				.append("	<body>")
 				.append("		<h1>첫번째 서블릿</h1>")
-				.append("		<a href='/jsp1'>목차</a>")
+				.append("		<a href='/jsp1/'>목차</a>")
 				.append("	</body>")
 				.append("</html>");
 	}

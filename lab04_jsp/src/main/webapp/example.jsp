@@ -8,7 +8,7 @@
     </head>
     <body>
         <nav>
-            <a href="/jsp1">목차</a>
+            <a href="/jsp1/">목차</a>
         </nav>
         <main>
             <h1>Example JSP</h1>

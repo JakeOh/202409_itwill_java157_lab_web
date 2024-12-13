@@ -44,7 +44,7 @@ public class SecondServlet extends HttpServlet {
 			.append("	<body>")
 			.append("		<h1>두번째 서블릿</h1>")
 			.append("		<h2>" + now + "</h2>")
-			.append("		<a href='/jsp1'>목차</a>")
+			.append("		<a href='/jsp1/'>목차</a>")
 			.append("	</body>")
 			.append("</html>");
 	}
