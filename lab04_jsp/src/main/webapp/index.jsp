@@ -14,6 +14,11 @@
         </header>
         <nav>
             <h2>목차</h2>
+            <ul>
+                <li>
+                    <a href="ex1">첫번째 서블릿</a>
+                </li>
+            </ul>
         </nav>
     </body>
 </html>
