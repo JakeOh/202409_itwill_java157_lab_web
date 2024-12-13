@@ -21,6 +21,9 @@
                 <li>
                     <a href="ex2">두번째 서블릿</a>
                 </li>
+                <li>
+                    <a href="ex3">포워드(Forward)</a>
+                </li>
             </ul>
         </nav>
     </body>
