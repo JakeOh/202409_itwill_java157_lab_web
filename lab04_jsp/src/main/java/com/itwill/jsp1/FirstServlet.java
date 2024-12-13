@@ -22,6 +22,10 @@ import jakarta.servlet.http.HttpServletResponse;
 // (2) 각각의 서블릿 클래스에서 @WebServlet 애너테이션으로 설정.
 // (주의) 하나의 서블릿 클래스는 web.xml 또는 애너테이션 중 한가지 방법으로만 설정해야 됨.
 
+// 서블릿 동작 원리:
+// (1) 요청 --> 서블릿 객체 생성 --> doGet()/doPost() 호출
+// (2) 요청 --> doGet()/doPost() 호출
+
 /**
  * Servlet implementation class FirstServlet
  */
