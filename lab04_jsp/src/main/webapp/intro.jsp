@@ -1,6 +1,10 @@
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%-- page 지시문(directive)의 trimDirectiveWhitespaces 속성: 
+  jsp 파일이 java 코드로 변환되는 과정에서 JSP 태그들이 HTML의 빈 줄로 대체되는데,
+  불필요한 빈 줄들을 삭제(true)할 것인 지, 아닌 지(false: 기본값)를 설정하는 속성.
+--%>
 
 <%-- JSP 주석
 1. Servlet(Server + Applet): WAS에서 실행되는, 요청/응답을 처리하는 작은 자바 앱.
@@ -66,7 +70,7 @@ printLog("intro.jsp 실행..."); // 이클립스 콘솔에 출력.
             %>
             
             <!-- expression -->
-            <h2> 사용자 이름: <%= USER_NAME %></h2>
+            <h2> 사용자 이름: <%= USER_NAME %> </h2>
             <h2> 날짜: <%= date %> </h2>
             <h2> 시간: <%= time %> </h2>
             
