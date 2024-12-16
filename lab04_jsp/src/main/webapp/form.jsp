@@ -21,7 +21,7 @@
                     <select name="color">
                         <option value="r">빨강</option>
                         <option value="b">파랑</option>
-                        <option value="c">초록</option>
+                        <option value="g">초록</option>
                     </select>
                 </div>
                 <div>
