@@ -82,6 +82,24 @@
                 </tbody>
             </table>
             
+            <h2>scriptlet &amp; expression을 사용한 ul</h2>
+            <%-- 연락처 data의 이름들을 li으로 작성 --%>
+            <ul>
+            <% for (Contact c : data) { %>
+                <li> <%= c.getName() %> </li>
+            <% } %>
+            </ul>
+            
+            <h2>scriptlet &amp; expression을 사용한 dl</h2>
+            <%-- 연락처 data의 이름을 dt, 전화번호와 이메일을 dd로 작성--%>
+            <dl>
+            <% for (Contact c : data) { %>
+                <dt> <%= c.getName() %> </dt>
+                <dd> <%= c.getPhone() %> </dd>
+                <dd> <%= c.getEmail() %> </dd>
+            <% } %>
+            </dl>
+            
         </main>
         
     </body>
