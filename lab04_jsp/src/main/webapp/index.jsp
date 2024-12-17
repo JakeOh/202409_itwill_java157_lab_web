@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <h1>Sevlet/JSP 소개</h1>
+            <h1>Servlet/JSP 소개</h1>
             <div> <%=LocalDateTime.now()%> </div>
         </header>
         <nav>
@@ -38,6 +38,9 @@
                 </li>
                 <li>
                     <a href="form.jsp">폼 양식</a>
+                </li>
+                <li>
+                    <a href="actiontag.jsp">JSP Action Tag</a>
                 </li>
             </ul>
         </nav>
