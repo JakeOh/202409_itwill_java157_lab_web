@@ -81,6 +81,30 @@
                 userid = ${ userid } <%-- (1) pageScope --> (2) requestScope --%>
             </p>
             
+            <h2>EL 연산자</h2>
+            <%-- 
+              EL 연산자:
+                o. 산술 연산자: +, -, *, /, %, mod  (예) x mod 2 --> x % 2
+                o. 비교 연산자: ==, eq, !=, ne, >, gt, >=, ge, <, lt, <=, le
+                   (예) x gt 0 --> x > 0
+                o. 논리 연산자: &&, and, ||, or, !, not
+                o. 삼항 연산자: (식) ? 값1 : 값2
+                o. empty: null 이거나 빈 문자열("")인 경우 true
+                   (예) empty x  --> x == null || x eq ""
+                   (예) not empty x -->  x != null && x ne ""
+              EL은 문자열을 사용할 때 큰따옴표(""), 작은따옴표('') 모두 가능.
+            --%>
+            <% pageContext.setAttribute("number", 123); %>
+            <p>
+                ${ number }는 ${ (number % 2 == 0) ? '짝수' : '홀수' }입니다.
+            </p>
+            
+            <h2>EL empty 연산자</h2>
+            <% request.setAttribute("logInUser", "scott"); %>
+            <p>
+                ${empty logInUser ? '로그인 하세요' : '안녕하세요' } ${logInUser}
+            </p>
+            
         </main>
     </body>
 </html>
