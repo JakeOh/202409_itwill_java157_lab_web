@@ -42,7 +42,7 @@
             contact1.setEmail("hgd@test.com");
             %>
             <div class="card">
-                ID: <%= contact1.getId() %> <br/>
+                ID: <%=contact1.getId()%> <br/>
                 Name: <%= contact1.getName() %> <br/>
                 Phone: <%= contact1.getPhone() %> <br/>
                 Email: <%= contact1.getEmail() %>

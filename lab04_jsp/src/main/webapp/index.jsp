@@ -42,6 +42,9 @@
                 <li>
                     <a href="actiontag.jsp">JSP Action Tag</a>
                 </li>
+                <li>
+                    <a href="el.jsp">EL(Expression Language)</a>
+                </li>
             </ul>
         </nav>
     </body>
