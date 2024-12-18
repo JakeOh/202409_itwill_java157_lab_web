@@ -107,6 +107,24 @@
                 </tbody>
             </table>
             
+            <h2>JSTL URL 태그</h2>
+            <div>
+                <a href="click_result.jsp?username=gu&est&color=crimson">클릭 1</a>
+            </div>
+            <%-- URL에서 &는 요청 파라미터를 구분하기 위한 구분자로 사용. 
+              '&'를 포함하는 문자열을 요청 파라미터 값으로 전달하기 위해서는 
+              '&' 문자에 해당하는 UTF-8 코드값으로 URL에 인코딩해야 함.
+            --%>
+            
+            <div>
+                <c:url value="click_result.jsp" var="resultPage">
+                    <%-- 요청 파라미터의 이름과 값을 설정. --%>
+                    <c:param name="username" value="gu&est" />
+                    <c:param name="color" value="DodgerBlue" />
+                </c:url>
+                <a href="${ resultPage }">클릭 2</a>
+            </div>
+            
         </main>
     </body>
 </html>
