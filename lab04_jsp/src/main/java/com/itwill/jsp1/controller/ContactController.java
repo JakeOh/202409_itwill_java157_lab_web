@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.itwill.jsp1.model.Contact;
+
 /**
  * Servlet implementation class ContactController
  */
@@ -41,7 +43,18 @@ public class ContactController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		// TODO 
+		System.out.println("ContactController::doPost() 호출");
+		
+		// 클라이언트가 전송한 폼 양식 데이터(요청 파라미터)를 읽음.
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		Contact contact = new Contact(id, name, phone, email);
+		System.out.println(contact);
+		
+		// "redirect" 방식의 페이지 이동.
+		response.sendRedirect("/jsp1/");
 	}
 
 }
