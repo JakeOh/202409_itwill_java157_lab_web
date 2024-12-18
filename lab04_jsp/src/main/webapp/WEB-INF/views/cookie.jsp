@@ -11,6 +11,8 @@
         
         <main>
             <h1>Cookie</h1>
+            <h2>방문횟수: ${ visitCount }</h2>
+            <%-- <%= request.getAttribute("visitCount") %> --%>
         </main>
     </body>
 </html>
