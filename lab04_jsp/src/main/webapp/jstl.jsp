@@ -92,9 +92,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%-- ${contactList}는 <%= pageContext.getAttribute("contactList") %>와 동일 --%>
                     <c:forEach items="${ contactList }" var="c">
                         <tr>
-                            <td>${ c.id }</td> <%-- EL은 프로퍼티 이름으로 getter 메서드를 찾음. --%>
+                            <%-- EL은 프로퍼티 이름으로 getter 메서드를 찾음. 
+                                ${c.id}는 <%= c.getId() %>와 동일.
+                            --%>
+                            <td>${ c.id }</td>
                             <td>${ c.name }</td>
                             <td>${ c.phone }</td>
                             <td>${ c.email }</td>

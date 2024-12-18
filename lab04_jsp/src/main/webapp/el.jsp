@@ -63,7 +63,7 @@
             --%>
             <p>
                 pageScope: id = ${ pageScope.id } <br/>
-                requestScope: id = ${requestScope.id } <br/>
+                requestScope: id = ${ requestScope.id } <br/>
                 sessionScope: id = ${ sessionScope.id } <br/>
             </p>
             
