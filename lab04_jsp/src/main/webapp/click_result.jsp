@@ -46,6 +46,14 @@
                 </c:otherwise>
             </c:choose>
             
+            <%-- JSTL 조건문 if. JSTL은 else 태그가 없음! --%>
+            <c:if test="${ param.username eq 'admin' }">
+                <h3>Admin Page</h3>
+            </c:if>
+            <c:if test="${ param.username ne 'admin' }">
+                <h3>User Page</h3>
+            </c:if>
+            
         </main>
         
     </body>
