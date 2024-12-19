@@ -11,6 +11,7 @@
         <header>
             <h1>Servlet/JSP 소개</h1>
             <div> <%=LocalDateTime.now()%> </div>
+            <div>안녕하세요, ${ nickname }!</div>
         </header>
         <nav>
             <h2>목차</h2>
