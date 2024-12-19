@@ -54,6 +54,9 @@
                 <li>
                     <a href="cookie">Cookie</a>
                 </li>
+                <li>
+                    <a href="session">Session</a>
+                </li>
             </ul>
         </nav>
     </body>
