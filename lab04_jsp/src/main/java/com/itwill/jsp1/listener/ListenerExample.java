@@ -1,6 +1,9 @@
 package com.itwill.jsp1.listener;
 
+import java.util.Enumeration;
+
 import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletRequestAttributeEvent;
 import jakarta.servlet.ServletRequestAttributeListener;
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
@@ -16,7 +19,9 @@ import jakarta.servlet.http.HttpServletRequest;
 // (주의) 한 개의 리스너 클래스는 web.xml과 애너테이션을 둘 다 동시에 설정할 수는 없음.
 public class ListenerExample 
 	implements ServletRequestListener, ServletRequestAttributeListener {
-
+	// ServletRequestListener: 요청(request) 객체가 생성/소멸 이벤트를 처리.
+	// ServletRequestAttributeListener: 요청 객체에서 attribute가 추가/삭제/변경 이벤트를 처리.
+	
     /**
      * Default constructor. 
      */
@@ -48,6 +53,20 @@ public class ListenerExample
          System.out.println("요청이 소멸됨.");
     }
 	
-    
+    // ServletRequestAttributeListener 인터페이스의 default 메서드(들)을 재정의.
+    /**
+     * @see ServletRequestAttributeListener#attributeAdded(ServletRequestAttributeEvent)
+     */
+    @Override
+    public void attributeAdded(ServletRequestAttributeEvent srae) {
+    	// 상위 타입에서 구현된(override되기 전의) 메서드를 호출.
+    	ServletRequestAttributeListener.super.attributeAdded(srae);
+    	
+    	Enumeration<String> attrNames = srae.getServletRequest().getAttributeNames();
+    	while (attrNames.hasMoreElements()) {
+    		System.out.println("Request Attr. Name: " + attrNames.nextElement() + " 추가됨.");
+    	}
+    	
+    }
     
 }
