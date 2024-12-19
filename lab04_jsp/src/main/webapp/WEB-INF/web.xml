@@ -33,6 +33,11 @@
         <url-pattern>/ex2</url-pattern>
     </filter-mapping>
     
+    <!-- 리스너 설정 -->
+    <listener>
+        <listener-class>com.itwill.jsp1.listener.ListenerExample</listener-class>
+    </listener>
+    
     <!-- 서블릿 클래스, 서블릿 URL 매핑 설정 -->
     <servlet>
         <servlet-name>firstServlet</servlet-name>
