@@ -31,8 +31,8 @@ public class HomeController extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {
-		System.out.println("homeController::doGet()");
-		log.info("doGet()");
+//		System.out.println("homeController::doGet()");
+		log.debug("doGet()");
 		
 		request.getRequestDispatcher("/WEB-INF/views/home.jsp")
 				.forward(request, response);

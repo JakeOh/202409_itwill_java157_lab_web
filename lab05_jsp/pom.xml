@@ -18,6 +18,8 @@
         <jstl-impl-version>3.0.1</jstl-impl-version>
         <log4j-version>2.24.3</log4j-version>
         <slf4j-api-version>2.0.16</slf4j-api-version>
+        <junit-version>5.11.4</junit-version>
+        <ojdbc17-version>23.6.0.24.10</ojdbc17-version>
     </properties>
     
     <!-- 의존성(라이브러리) 설정 -->
@@ -77,7 +79,7 @@
             <version>${log4j-version}</version>
         </dependency>
         
-        <!-- The Apache Log4j SLF4J API binding to Log4j 2 Core -->
+        <!-- The Apache Log4j SLF4J 2.0 API binding to Log4j 2 Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j2-impl</artifactId>
@@ -89,6 +91,32 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-api-version}</version>
+        </dependency>
+
+        <!-- 자바 단위 테스트(Java unit test)를 하기 위해서 -->
+        <!-- Module "junit-jupiter-engine" of JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+            <!-- scope=test: 단위 테스트 클래스들만 사용하고, 릴리즈에서는 사용하지 않음. -->
+        </dependency>
+        
+        <!-- Module "junit-jupiter-api" of JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- Oracle JDBC 라이브러리 -->
+        <!-- Oracle JDBC Driver compatible with JDK17, JDK19, and JDK21 -->
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc17</artifactId>
+            <version>${ojdbc17-version}</version>
         </dependency>
 
     </dependencies>

@@ -7,7 +7,7 @@
     <Appenders>
         <!-- 로그를 출력/저장하는 위치(방법): Console, File -->
         <Console name="CONSOLE" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%-40.40c] %m%n" />
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%40.40c(%3L)] %m%n" />
             <!--  
               로그 패턴
               o. %d, %date: 로그 출력 날짜/시간.
