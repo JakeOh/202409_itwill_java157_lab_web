@@ -17,7 +17,7 @@
         <jstl-api-version>3.0.2</jstl-api-version>
         <jstl-impl-version>3.0.1</jstl-impl-version>
         <log4j-version>2.24.3</log4j-version>
-        <slf4j-api-version>1.7.25</slf4j-api-version>
+        <slf4j-api-version>2.0.16</slf4j-api-version>
     </properties>
     
     <!-- 의존성(라이브러리) 설정 -->
@@ -80,7 +80,7 @@
         <!-- The Apache Log4j SLF4J API binding to Log4j 2 Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
             <version>${log4j-version}</version>
         </dependency>
         
