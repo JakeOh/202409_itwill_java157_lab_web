@@ -25,5 +25,8 @@
         <Root level="DEBUG" additivity="false">
             <AppenderRef ref="CONSOLE" />
         </Root>
+        <Logger name="com.zaxxer.hikari" level="info" additivity="false">
+            <AppenderRef ref="CONSOLE" />
+        </Logger>
     </Loggers>
 </Configuration>
