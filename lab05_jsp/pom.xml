@@ -30,6 +30,7 @@
             <!-- scope=provided: WAS에서 제공되는 의존성. -->
         </dependency>
 
+        <!-- Jakarta Server Pages API -->
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>

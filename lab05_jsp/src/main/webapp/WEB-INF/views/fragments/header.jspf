@@ -1,0 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+
+<header class="mt-2 p-4 bg-primary text-white text-center">
+    <h1>${ pageTitle }</h1>
+</header>
