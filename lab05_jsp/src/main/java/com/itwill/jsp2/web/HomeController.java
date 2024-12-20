@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Servlet implementation class HomeController
  */
@@ -15,7 +18,8 @@ import java.io.IOException;
 // (컨텍스트 루트) http://localhost:8080/jsp2/
 public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Logger log = LoggerFactory.getLogger(HomeController.class);
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,6 +32,7 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {
 		System.out.println("homeController::doGet()");
+		log.info("doGet()");
 		
 		request.getRequestDispatcher("/WEB-INF/views/home.jsp")
 				.forward(request, response);

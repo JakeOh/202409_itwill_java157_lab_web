@@ -16,6 +16,8 @@
         <el-api-version>5.0.0</el-api-version>
         <jstl-api-version>3.0.2</jstl-api-version>
         <jstl-impl-version>3.0.1</jstl-impl-version>
+        <log4j-version>2.24.3</log4j-version>
+        <slf4j-api-version>1.7.25</slf4j-api-version>
     </properties>
     
     <!-- 의존성(라이브러리) 설정 -->
@@ -59,6 +61,36 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>${jstl-impl-version}</version>
         </dependency>
+        
+        <!-- Log4j, Slf4j 라이브러리를 사용하기 위해서 -->
+        <!-- Apache Log4j Implementation -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        
+        <!-- Apache Log4j API -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        
+        <!-- The Apache Log4j SLF4J API binding to Log4j 2 Core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        
+        <!-- Slf4j API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api-version}</version>
+        </dependency>
+
     </dependencies>
     
     <build>
