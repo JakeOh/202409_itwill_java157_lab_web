@@ -1,9 +1,20 @@
 package com.itwill.jsp2.repository;
 
+import static com.itwill.jsp2.datasourceutil.DataSourceUtil.close;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.itwill.jsp2.datasourceutil.DataSourceUtil;
+import com.itwill.jsp2.domain.Post;
 import com.zaxxer.hikari.HikariDataSource;
 
 // 웹 MVC 아키텍쳐에서 영속성/저장소 계층(persistence/repository layer)을 담당하는 객체.
@@ -18,5 +29,47 @@ public enum PostDao {
 	// 포스트 목록 검색에서 사용할 SQL
 	private static final String SQL_SELECT_ALL = 
 			"select * from posts order by id desc";
+	
+	public List<Post> select() {
+		log.debug(SQL_SELECT_ALL);
+		
+		List<Post> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(SQL_SELECT_ALL);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Post post = toPostFromResultSet(rs);
+				list.add(post);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 사용했던 리소스 해제(커넥션 풀에 사용했던 커넥션 반환).
+			close(conn, stmt, rs);
+		}
 
+		return list;
+	}
+
+	private Post toPostFromResultSet(ResultSet rs) throws SQLException {
+		Integer id = rs.getInt("ID");
+		String title = rs.getString("TITLE");
+		String content = rs.getString("CONTENT");
+		String author = rs.getString("AUTHOR");
+		Timestamp createdTime = rs.getTimestamp("CREATED_TIME");
+		Timestamp modifiedTime = rs.getTimestamp("MODIFIED_TIME");
+		
+		Post post = Post.builder()
+				.id(id).title(title).content(content).author(author)
+				.createdTime(createdTime).modifiedTime(modifiedTime)
+				.build();
+		
+		return post;
+	}
+	
 }
