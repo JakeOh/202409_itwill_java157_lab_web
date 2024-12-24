@@ -29,35 +29,33 @@
                         <h1>글 수정하기</h1>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form id="modifyForm">
                             <div class="mt-2 d-none">
                                 <label class="form-label" for="id">번호</label>
-                                <input class="form-control" 
-                                    id="id" type="text" value="${ post.id }" readonly />
+                                <input class="form-control" id="id" 
+                                    name="id" type="text" value="${ post.id }" readonly />
                             </div>
                             <div class="mt-2">
                                 <label class="form-label" for="title">제목</label>
-                                <input class="form-control" 
-                                    id="title" type="text" value="${ post.title }" autofocus />
+                                <input class="form-control" id="title" 
+                                    name="title" type="text" value="${ post.title }" autofocus />
                             </div>
                             <div class="mt-2">
                                 <label class="form-label" for="content">내용</label>
-                                <textarea class="form-control" 
-                                    id="content" rows="5">${ post.content }</textarea>
+                                <textarea class="form-control" id="content" 
+                                    name="content" rows="5">${ post.content }</textarea>
                             </div>
                             <div class="mt-2 d-none">
                                 <label class="form-label" for="author">작성자</label>
-                                <input class="form-control" 
-                                    id="author" type="text" value="${ post.author }" readonly />
+                                <input class="form-control" id="author" 
+                                    type="text" value="${ post.author }" readonly />
                             </div>
                         </form>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center">
-                            <c:url value="/post/modify" var="postModifyPage">
-                                <c:param name="id" value="${ post.id }" />
-                            </c:url>
-                            <a class="btn btn-outline-success" href="${ postModifyPage }">수정하기</a>
+                            <button class="btn btn-outline-danger me-2" id="btnDelete">삭제</button>
+                            <button class="btn btn-outline-success" id="btnUpdate">업데이트</button>
                         </div>
                     </div>
                 </div>
@@ -68,5 +66,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
             crossorigin="anonymous"></script>
+        
+        <%-- 정적 리소스(CSS, JS, 이미지, 동영상, ...)들은 WEB-INF 폴더 밑에 저장하면 안됨. --%>
+        <%-- src/main/webapp/static/js/post_modify.js 파일을 포함. --%>
+        <c:url value="/static/js/post_modify.js" var="postModifyJS" />
+        <script src="${ postModifyJS }"></script>
+        
     </body>
 </html>
