@@ -57,11 +57,34 @@ public enum PostDao {
 	}
 
 	// 포스트 저장(새 글 작성)에서 필요한 SQL 문장을 선언.
-	private static final String SQL_INSERT = "";
+	private static final String SQL_INSERT = 
+			"insert into posts (title, content, author, created_time, modified_time) "
+			+ "values (?, ?, ?, systimestamp, systimestamp)";
 	
 	public int insert(Post post) {
+		log.debug("insert(post={})", post);
+		log.debug(SQL_INSERT);
 		
-		return 0;
+		int result = 0; // insert 문장의 실행 결과를 저장하기 위한 지역 변수.
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			// 데이터 소스(커넥션 풀)에서 커넥션을 빌려옴.
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(SQL_INSERT);
+			stmt.setString(1, post.getTitle());
+			stmt.setString(2, post.getContent());
+			stmt.setString(3, post.getAuthor());
+			result = stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 사용했던 커넥션을 커넥션 풀에 반환.
+			close(conn, stmt);
+		}
+		
+		return result;
 	}
 	
 	private Post toPostFromResultSet(ResultSet rs) throws SQLException {

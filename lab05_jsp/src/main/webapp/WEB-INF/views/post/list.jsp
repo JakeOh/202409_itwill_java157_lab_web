@@ -42,7 +42,12 @@
                                 <c:forEach items="${ posts }" var="p">
                                     <tr>
                                         <td>${ p.id }</td>
-                                        <td>${ p.title }</td>
+                                        <c:url value="/post/details" var="postDetailsPage">
+                                            <c:param name="id" value="${ p.id }" />
+                                        </c:url>
+                                        <td>
+                                            <a href="${ postDetailsPage }">${ p.title }</a>
+                                        </td>
                                         <td>${ p.author }</td>
                                         <td>${ p.createdTime }</td>
                                     </tr>
