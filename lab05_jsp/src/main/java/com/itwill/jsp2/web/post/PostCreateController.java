@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public class PostCreateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory.getLogger(PostCreateController.class);
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
