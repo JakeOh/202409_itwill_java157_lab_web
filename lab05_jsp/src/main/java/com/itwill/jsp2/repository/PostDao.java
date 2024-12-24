@@ -56,6 +56,14 @@ public enum PostDao {
 		return list;
 	}
 
+	// 포스트 저장(새 글 작성)에서 필요한 SQL 문장을 선언.
+	private static final String SQL_INSERT = "";
+	
+	public int insert(Post post) {
+		
+		return 0;
+	}
+	
 	private Post toPostFromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("ID");
 		String title = rs.getString("TITLE");
