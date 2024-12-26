@@ -49,7 +49,7 @@
                                             <a href="${ postDetailsPage }">${ p.title }</a>
                                         </td>
                                         <td>${ p.author }</td>
-                                        <td>${ p.createdTime }</td>
+                                        <td>${ p.modifiedTime }</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

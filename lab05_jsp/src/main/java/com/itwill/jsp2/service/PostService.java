@@ -50,4 +50,13 @@ public enum PostService {
 		return result;
 	}
 	
+	public int update(Post post) {
+		log.debug("update(post={})", post);
+		
+		int result = postDao.update(post);
+		log.debug("{}개 행이 업데이트됨.", result);
+		
+		return result;
+	}
+	
 }
