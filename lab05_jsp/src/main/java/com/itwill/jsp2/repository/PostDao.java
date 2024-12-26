@@ -172,6 +172,73 @@ public enum PostDao {
 		return result;
 	}
 	
+	private static final String SQL_SELECT_BY_TITLE = 
+			"select * from posts "
+			+ "where upper(title) like upper('%' || ? || '%') "
+			+ "order by id desc";
+	private static final String SQL_SELECT_BY_CONTENT = 
+			"select * from posts "
+			+ "where upper(content) like upper('%' || ? || '%') "
+			+ "order by id desc";
+	private static final String SQL_SELECT_BY_TITLE_OR_CONTENT = 
+			"select * from posts "
+			+ "where upper(title) like upper('%' || ? || '%') "
+			+ "or upper(content) like upper('%' || ? || '%') "
+			+ "order by id desc";
+	private static final String SQL_SELECT_BY_AUTHOR = 
+			"select * from posts "
+			+ "where upper(author) like upper('%' || ? || '%') "
+			+ "order by id desc";
+	
+	public List<Post> select(String category, String keyword) {
+		log.debug("select(category={}, keyword={})", category, keyword);
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<Post> result = new ArrayList<>(); // 검색 결과를 저장할 (빈) 리스트.
+		try {
+			conn = ds.getConnection();
+			
+			switch (category) {
+			case "t":
+				log.debug(SQL_SELECT_BY_TITLE);
+				stmt = conn.prepareStatement(SQL_SELECT_BY_TITLE);
+				stmt.setString(1, keyword);
+				break;
+			case "c":
+				log.debug(SQL_SELECT_BY_CONTENT);
+				stmt = conn.prepareStatement(SQL_SELECT_BY_CONTENT);
+				stmt.setString(1, keyword);
+				break;
+			case "tc":
+				log.debug(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				stmt = conn.prepareStatement(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				stmt.setString(1, keyword);
+				stmt.setString(2, keyword);
+				break;
+			case "a":
+				log.debug(SQL_SELECT_BY_AUTHOR);
+				stmt = conn.prepareStatement(SQL_SELECT_BY_AUTHOR);
+				stmt.setString(1, keyword);
+				break;
+			}
+			
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Post post = toPostFromResultSet(rs);
+				result.add(post);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt, rs);
+		}
+		
+		return result;
+	}
+	
 	private Post toPostFromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("ID");
 		String title = rs.getString("TITLE");

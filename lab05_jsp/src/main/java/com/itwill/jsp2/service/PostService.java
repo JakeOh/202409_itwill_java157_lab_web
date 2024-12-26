@@ -59,4 +59,10 @@ public enum PostService {
 		return result;
 	}
 	
+	public List<Post> read(String category, String keyword) {
+		log.debug("read(category={}, keyword={})", category, keyword);
+		
+		return postDao.select(category, keyword);
+	}
+	
 }
