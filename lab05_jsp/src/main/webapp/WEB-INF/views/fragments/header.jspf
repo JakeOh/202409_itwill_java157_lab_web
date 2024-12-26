@@ -26,6 +26,18 @@
                     <c:url value="/post/create" var="postCreatePage" />
                     <a class="nav-link" href="${ postCreatePage }">새글</a>
                 </li>
+                <li class="nav-item">
+                    <c:url value="/user/signup" var="userSignUpPage" />
+                    <a class="nav-link" href="${ userSignUpPage }">회원가입</a>
+                </li>
+                <li class="nav-item">
+                    <c:url value="/user/signin" var="userSignInPage" />
+                    <a class="nav-link" href="${ userSignInPage }">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <c:url value="/user/signout" var="userSignOutPage" />
+                    <a class="nav-link" href="${ userSignOutPage }">로그아웃</a>
+                </li>
             </ul>
         </div>
     </div>
