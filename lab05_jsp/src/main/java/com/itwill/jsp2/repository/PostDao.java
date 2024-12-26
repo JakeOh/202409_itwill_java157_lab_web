@@ -117,6 +117,32 @@ public enum PostDao {
 		return post;
 	}
 	
+	// 해당 아이디(PK)의 포스트 1개를 삭제하는 SQL.
+	private static final String SQL_DELETE_BY_ID = 
+			"delete from posts where id = ?";
+	
+	public int delete(Integer id) {
+		log.debug("delete(id={})", id);
+		log.debug(SQL_DELETE_BY_ID);
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int result = 0; // executeUpdate() 메서드의 리턴 값을 저장하기 위한 변수.
+		try {
+			conn = ds.getConnection(); // 커넥션 풀에서 커넥션을 빌려옴.
+			stmt = conn.prepareStatement(SQL_DELETE_BY_ID);
+			stmt.setInt(1, id);
+			result = stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt); // 사용했던 커넥션을 커넥션 풀에 반환.
+		}
+		
+		return result;
+	}
+	
 	private Post toPostFromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("ID");
 		String title = rs.getString("TITLE");

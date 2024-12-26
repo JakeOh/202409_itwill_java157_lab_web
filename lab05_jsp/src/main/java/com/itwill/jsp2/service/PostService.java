@@ -41,4 +41,13 @@ public enum PostService {
 		return post;
 	}
 	
+	public int delete(Integer id) {
+		log.debug("delete(id={})", id);
+		
+		int result = postDao.delete(id);
+		log.debug("{}개 행이 삭제됨.", result);
+		
+		return result;
+	}
+	
 }
