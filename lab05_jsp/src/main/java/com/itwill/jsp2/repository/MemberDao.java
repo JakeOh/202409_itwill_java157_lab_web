@@ -4,7 +4,9 @@ import static com.itwill.jsp2.datasourceutil.DataSourceUtil.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +48,57 @@ public enum MemberDao {
 		}
 		
 		return result;
+	}
+	
+	// 로그인할 때 필요한 SQL, 메서드
+	private static final String SQL_SELECT_BY_USERNAME_AND_PASSWORD = 
+			"select * from members where username = ? and password = ?";
+	
+	public Member select(String username, String password) {
+		log.debug("select(username={}, password={})", username, password);
+		log.debug(SQL_SELECT_BY_USERNAME_AND_PASSWORD);
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Member member = null;
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(SQL_SELECT_BY_USERNAME_AND_PASSWORD);
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				member = toMemberFromResultSet(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt, rs);
+		}
+		
+		return member;
+	}
+	
+	private Member toMemberFromResultSet(ResultSet rs) throws SQLException {
+		Integer id = rs.getInt("id");
+		String username = rs.getString("username");
+		String password = rs.getString("password");
+		String email = rs.getString("email");
+		Integer points = rs.getInt("points");
+		Timestamp createdTime = rs.getTimestamp("created_time");
+		Timestamp modifiedTime = rs.getTimestamp("modified_time");
+		
+		return Member.builder()
+				.id(id)
+				.username(username)
+				.password(password)
+				.email(email)
+				.points(points)
+				.createdTime(createdTime)
+				.modifiedTime(modifiedTime)
+				.build();
 	}
 	
 }
