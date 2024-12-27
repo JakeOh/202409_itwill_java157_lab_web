@@ -12,13 +12,24 @@ public class MemberDaoTest {
 	private final MemberDao memberDao = MemberDao.INSTANCE;
 	
 	// MemberDao.insert() 메서드 단위 테스트.
-	@Test
+//	@Test
 	public void testInsert() {
 		Member member = Member.builder()
 				.username("admin").password("admin1234").email("admin@itwill.com")
 				.build();
 		int result = memberDao.insert(member);
 		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	public void testSelect() {
+		// username과 password가 일치하는 사용자가 있는 경우:
+		Member m1 = memberDao.select("admin", "admin1234");
+		Assertions.assertNotNull(m1);
+		
+		// username과 password가 일치하는 사용자가 없는 경우:
+		Member m2 = memberDao.select("admin", "1234");
+		Assertions.assertNull(m2);
 	}
 
 }
