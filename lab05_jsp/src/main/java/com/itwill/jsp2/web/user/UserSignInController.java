@@ -50,19 +50,25 @@ public class UserSignInController extends HttpServlet {
     	// 양식 데이터(username, password)를 읽음.
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
-    	log.debug("doPost(username={}, password={})", username, password);
+    	String target = request.getParameter("target");
+    	log.debug("doPost(username={}, password={}, target={})", 
+    			username, password, target);
     	
     	// 서비스 계층의 메서드를 호출해서 로그인 성공/실패 여부를 판단.
     	Member member = memberService.signIn(username, password);
     	if (member != null) {
     		// username과 password가 일치하는 사용자가 있는 경우 -> 로그인 성공.
-    		// 세션에 로그인 정보를 저장 -> 포스트 목록 페이지로 이동(redirect).
+    		// 세션에 로그인 정보를 저장
     		HttpSession session = request.getSession();
     		session.setAttribute("signedInUser", member.getUsername());
     		
-    		String url = request.getContextPath() + "/post/list";
-    		log.debug("로그인 성공: redirect to {}", url);
-    		response.sendRedirect(url);
+    		// target 페이지로 이동(redirect)
+    		if (target != null && !target.equals("")) {
+    			response.sendRedirect(target); // 타겟 페이지로 이동.
+    		} else {
+    			String url = request.getContextPath() + "/"; // 홈 페이지
+    			response.sendRedirect(url); // 홈 페이지로 이동.
+    		}
     		
     	} else {
     		// username과 password가 일치하는 사용자가 없는 경우 -> 로그인 실패.

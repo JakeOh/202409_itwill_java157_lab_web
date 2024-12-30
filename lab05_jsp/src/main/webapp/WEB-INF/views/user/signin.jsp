@@ -34,6 +34,9 @@
                                 <input type="password" class="form-control"
                                     name="password" placeholder="비밀번호" required />
                             </div>
+                            <div class="d-none">
+                                <input name="target" value="${ param.target }" readonly />
+                            </div>
                             <div class="mt-2">
                                 <input class="form-control btn btn-outline-primary"
                                     type="submit" value="로그인" />
