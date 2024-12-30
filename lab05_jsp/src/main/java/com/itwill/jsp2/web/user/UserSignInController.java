@@ -1,6 +1,7 @@
 package com.itwill.jsp2.web.user;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +74,9 @@ public class UserSignInController extends HttpServlet {
     	} else {
     		// username과 password가 일치하는 사용자가 없는 경우 -> 로그인 실패.
     		// 다시 로그인 페이지로 이동(redirect).
-    		String url = request.getContextPath() + "/user/signin";
+    		String url = request.getContextPath() 
+    				+ "/user/signin?result=f&target=" 
+    				+ URLEncoder.encode(target, "UTF-8");
     		log.debug("로그인 실패: redirect to {}", url);
     		response.sendRedirect(url);
     	}

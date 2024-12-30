@@ -40,9 +40,9 @@
                                 <textarea rows="5" class="form-control"
                                     name="content" placeholder="내용" required></textarea>
                             </div>
-                            <div class="mt-2">
+                            <div class="d-none">
                                 <input type="text" class="form-control"
-                                    name="author" placeholder="작성자" required />
+                                    name="author" value="${ signedInUser }" readonly />
                             </div>
                             <div class="mt-2 d-flex justify-content-end">
                                 <input class="me-2 btn btn-outline-danger" 
