@@ -52,12 +52,16 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-outline-danger me-2" id="btnDelete">삭제</button>
-                            <button class="btn btn-outline-success" id="btnUpdate">업데이트</button>
+                    
+                    <c:if test="${ post.author eq signedInUser }">
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-outline-danger me-2" id="btnDelete">삭제</button>
+                                <button class="btn btn-outline-success" id="btnUpdate">업데이트</button>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+                    
                 </div>
             </main>
         </div>

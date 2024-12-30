@@ -14,6 +14,9 @@
         <filter-name>authenticationFilter</filter-name>
         <url-pattern>/post/create</url-pattern>
         <url-pattern>/post/details</url-pattern>
+        <url-pattern>/post/modify</url-pattern>
+        <url-pattern>/post/update</url-pattern>
+        <url-pattern>/post/delete</url-pattern>
     </filter-mapping>
     
 </web-app>
