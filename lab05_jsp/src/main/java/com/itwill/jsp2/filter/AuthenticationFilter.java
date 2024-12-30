@@ -1,21 +1,23 @@
 package com.itwill.jsp2.filter;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpFilter;
 import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 /**
  * Servlet Filter implementation class AuthenticationFilter
  */
-@WebFilter(filterName = "authenticationFilter", urlPatterns = { "/authenticationFilter" })
 public class AuthenticationFilter extends HttpFilter {
     private static final long serialVersionUID = 1L;
     private final Logger log = LoggerFactory.getLogger(AuthenticationFilter.class);
@@ -37,11 +39,34 @@ public class AuthenticationFilter extends HttpFilter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+		log.debug("doFilter()");
+		
+		// 인증이 필요한 요청 주소들(새글, 상세보기, ...)에 대해서
+		// 로그인 여부(세션에 signedInUser 속성이 있는 지)를 확인하고,
+		// (1) 로그인되어 있으면, 컨트롤러(서블릿)으로 요청을 전달(chain.doFilter()를 호출).
+		// (2) 로그인되어 있지 않으면, 컨트롤러로 요청을 전달하지 않고 로그인 페이지로 이동.
+		// -> 로그인을 담당하는 컨트롤러에서 로그인 성공 후에 최초 요청 페이지로 이동할 수 
+		// 있도록 설정.
 
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		HttpServletRequest req = (HttpServletRequest) request; // casting
+		HttpServletResponse resp = (HttpServletResponse) response;
+		
+		// 세션에 signedInUser 속성이 있는 지 체크:
+		HttpSession session = req.getSession();
+		Object signedInUser = session.getAttribute("signedInUser");
+		if (signedInUser != null) { // 로그인 상태
+			log.debug("로그인 사용자: {}", signedInUser);
+			
+			// 필터 체인을 통해서(그 다음 필터 또는 서블릿으로) 요청을 전달.
+			chain.doFilter(request, response);
+			
+		} else { // 로그아웃 상태
+			log.debug("로그아웃 상태 --> 로그인 페이지로 이동");
+			
+			String url = req.getContextPath() + "/user/signin";
+			resp.sendRedirect(url);
+		}
+		
 	}
 
 	/**

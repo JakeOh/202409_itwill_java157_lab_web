@@ -5,4 +5,15 @@
     id="WebApp_ID" version="6.0">
     <display-name>lab05_jsp</display-name>
     
+    <!-- 필터 & 필터 매핑 설정 -->
+    <filter>
+        <filter-name>authenticationFilter</filter-name>
+        <filter-class>com.itwill.jsp2.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/post/create</url-pattern>
+        <url-pattern>/post/details</url-pattern>
+    </filter-mapping>
+    
 </web-app>
