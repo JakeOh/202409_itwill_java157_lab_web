@@ -81,6 +81,34 @@ public enum MemberDao {
 		return member;
 	}
 	
+	// members 테이블의 points 컬럼을 업데이트하는 SQL, 메서드
+	private static final String SQL_UPDATE_POINTS = 
+			"update members set points = points + ?, modified_time = systimestamp "
+			+ "where username = ?";
+	
+	public int update(Integer points, String username) {
+		log.debug("update(points={}, username={})", points, username);
+		log.debug(SQL_UPDATE_POINTS);
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		int result = 0;
+		try {
+			conn = ds.getConnection();
+			stmt = conn.prepareStatement(SQL_UPDATE_POINTS);
+			stmt.setInt(1, points);
+			stmt.setString(2, username);
+			result = stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt);
+		}
+		
+		return result;
+	}
+	
 	private Member toMemberFromResultSet(ResultSet rs) throws SQLException {
 		Integer id = rs.getInt("id");
 		String username = rs.getString("username");
