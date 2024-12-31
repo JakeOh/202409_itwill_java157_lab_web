@@ -37,7 +37,15 @@ public class ExampleController {
 		//-> 컨트롤러 메서드가 문자열을 리턴하면, 디스패쳐 서블릿이 뷰의 이름을 찾는 데 사용.
 		// servlet-context.xml 파일에서 <bean> 태그에서 설정된 ViewResolver 설정을 사용함.
 		// 디스패쳐 서블릿이 뷰 리졸버를 이용해서 요청을 포워드할
-		// 뷰의 경로(/WEB-INF/view/returnValue.jsp)를 찾을 수 있음.
+		// 뷰의 경로(/WEB-INF/views/returnValue.jsp)를 찾을 수 있음.
+	}
+	
+	@GetMapping("/example")
+	public void ex() {
+		log.debug("ex()");
+		// 디스패쳐 서블릿이 뷰의 이름을 ViewResolver를 사용해서 찾는 방법:
+		// (1) 컨트롤러의 메서드가 문자열(String)을 리턴하는 경우는 리턴 값이 jsp 파일의 이름.
+		// (2) 컨트롤러 메서드의 리턴 타입이 void인 경우, 매핑된 요청 주소가 jsp 파일의 이름.
 	}
 	
 }

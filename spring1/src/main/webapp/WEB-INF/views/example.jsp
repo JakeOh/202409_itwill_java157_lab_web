@@ -18,29 +18,26 @@
             crossorigin="anonymous" />
     </head>
     <body>
-        <header>
-            <h1>Home Page</h1>
-            <h2>${now}</h2>
-            <div>
-                <c:url value="/images/paris.jpg" var="paris" />
-                <%-- 요청주소는 http://localhost:8080/spring1/images/paris.jpg 
-                  servlet-context.xml <mvc:resources> 태그 설정에 의해서
-                  webapp/static/images/paris.jpg 파일을 응답받게 됨.
-                --%>
-                <img alt="파리" src="${paris}" />
-            </div>
-        </header>
+        <nav>
+            <ul>
+                <li>
+                    <c:url value="/" var="homePage" />
+                    <a href="${homePage}">홈 페이지</a>
+                </li>
+            </ul>
+        </nav>
         
         <main>
-            <h1>목차</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <c:url value="/example" var="examplePage" />
-                        <a href="${examplePage}">컨트롤러 예제</a>
-                    </li>
-                </ul>
-            </nav>
+            <h1>Example Page</h1>
+            <section>
+                <h2>GET 방식 요청</h2>
+                <c:url value="/ex1" var="ex1Page" />
+                <form method="get" action="${ex1Page}">
+                    <input type="text" name="username" placeholder="이름 입력" />
+                    <input type="number" name="age" placeholder="나이 입력" />
+                    <input type="submit" value="제출" />
+                </form>
+            </section>
         </main>
         
         <!-- Bootstrap JS -->
