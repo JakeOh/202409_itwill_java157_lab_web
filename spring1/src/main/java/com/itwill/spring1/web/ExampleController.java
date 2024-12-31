@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
+//POCO(Plain Old C++(C#) Object)
 //POJO(Plain Old Java Object): 간단한 오래된 자바 객체.
 //특정 클래스를 상속(extends)하거나, 특정 인터페이스를 구현(implements)할 필요가 없는
 //(상위 타입의 특정 메서드들을 반드시 재정의할 필요가 없는) 평범한 자바 객체.
@@ -25,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ExampleController {
 
 	@GetMapping("/")
-	//-> GET 방식, 요청 주소가 컨텍스트 루트(예: /spring1/)인 요청을 처리하는 메서드.
+	//-> GET 방식, 요청 주소가 컨텍스트 루트(예: /spring1/)인 요청을 처리하는 메서드임을 설정하는 애너테이션.
 	public String home(Model model) {
 		log.debug("home()");
 		

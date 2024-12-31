@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +21,14 @@
         <header>
             <h1>Home Page</h1>
             <h2>${now}</h2>
+            <div>
+                <c:url value="/images/paris.jpg" var="paris" />
+                <%-- 요청주소는 http://localhost:8080/spring1/images/paris.jpg 
+                  servlet-context.xml <mvc:resources> 태그 설정에 의해서
+                  webapp/static/images/paris.jpg 파일을 응답받게 됨.
+                --%>
+                <img alt="파리" src="${paris}">
+            </div>
         </header>
         
         <!-- Bootstrap JS -->
