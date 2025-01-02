@@ -55,6 +55,18 @@
                         <c:url value="/rest1" var="rest1Page" />
                         <a href="${rest1Page}">REST 1</a>
                     </li>
+                    <li>
+                        <c:url value="/rest2" var="rest2Page" />
+                        <a href="${rest2Page}">REST 2</a>
+                    </li>
+                    <li>
+                        <c:url value="/rest3" var="rest3Page" />
+                        <a href="${rest3Page}">REST Controller 3</a>
+                    </li>
+                    <li>
+                        <c:url value="/rest4" var="rest4Page" />
+                        <a href="${rest4Page}">REST Controller 4</a>
+                    </li>
                 </ul>
             </nav>
         </main>

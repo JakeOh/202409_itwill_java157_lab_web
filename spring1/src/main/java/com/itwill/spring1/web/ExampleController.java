@@ -140,4 +140,16 @@ public class ExampleController {
 		return "Hello, 안녕하세요!";
 	}
 	
+	@GetMapping("/rest2")
+	@ResponseBody //-> 메서드의 리턴값이 클라이언트에게 직접 전송되는 데이터.
+	public User rest2() {
+		log.debug("rest2()");
+		
+		return User.builder().age(16).username("홍길동").build();
+		//-> 컨트롤러가 리턴한 자바 객체를 jackson-databind 라이브러리에서
+		// JSON(JavaScript Object Notation) 형식의 문자열로 변환하고
+		// 클라이언트에게는 JSON 문자열이 응답으로 전송됨.
+		// (참고) jackson-databind의 기능: Java 객체 <---> JSON 문자열
+	}
+	
 }
