@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,6 +47,19 @@ public class ExampleController {
 		// 디스패쳐 서블릿이 뷰의 이름을 ViewResolver를 사용해서 찾는 방법:
 		// (1) 컨트롤러의 메서드가 문자열(String)을 리턴하는 경우는 리턴 값이 jsp 파일의 이름.
 		// (2) 컨트롤러 메서드의 리턴 타입이 void인 경우, 매핑된 요청 주소가 jsp 파일의 이름.
+	}
+	
+	/*
+	 * 이클립스 메뉴 Window -> Preferences -> Java -> Compiler ->
+	 * Store information about method parameters (usable via reflection) 체크.
+	 * 자바 컴파일러가 컴파일할 때 메서드 파라미터 정보를 저장해서,
+	 * 자바 프로그램이 파라미터 이름을 reflection 기능으로 사용할 수 있도록 함.
+	 */
+	@GetMapping("/ex1")
+	public void ex1(@RequestParam(name = "username") String name, 
+			@RequestParam(defaultValue = "0") int age) {
+		log.debug("ex1(username={}, age={})", name, age);
+		
 	}
 	
 }
