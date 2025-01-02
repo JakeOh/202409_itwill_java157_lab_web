@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.spring1.dto.User;
 
@@ -100,6 +101,43 @@ public class ExampleController {
 		log.debug("ex2(user={})", user);
 		
 		return "ex1";
+	}
+	
+	@GetMapping("/test")
+	public void test() {
+		log.debug("test()");
+	}
+	
+	@GetMapping("/test2")
+	public String test2() {
+		log.debug("test2()");
+		
+		return "forward:/test";
+		// 컨트롤러 메서드가 "forward:"으로 시작하는 문자열을 리턴
+		// -> 포워드(forward) 방식의 이동.
+		// -> 최초 요청 주소가 변경되지 않음. request, response 객체가 유지.
+	}
+	
+	@GetMapping("/test3")
+	public String test3() {
+		log.debug("test3()");
+		
+		return "redirect:/test";
+		// 컨트롤러 메서드가 "redirect:"으로 시작하는 문자열을 리턴
+		// -> 리다이렉트(redirect) 방식의 이동.
+		// HTTP 302(redirect) 응답 이후에 클라이언트가 요청을 다시 보냄.
+		// 최초 요청 URL이 리다이렉트되는 URL로 바뀜.
+		// 새로운 request, response 객체가 만들어짐. 
+	}
+	
+	@GetMapping("/rest1")
+	@ResponseBody
+	//-> 컨트롤러 메서드가 리턴하는 값이 뷰를 찾기 위한 문자열이 아니라,
+	// 클라이언트로 직접 응답으로 전송되는 데이터.
+	public String rest1() {
+		log.debug("rest1()");
+		
+		return "Hello, 안녕하세요!";
 	}
 	
 }

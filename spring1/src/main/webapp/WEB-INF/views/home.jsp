@@ -51,6 +51,10 @@
                         <c:url value="/test3" var="redirectPage" />
                         <a href="${redirectPage}">리다이렉트</a>
                     </li>
+                    <li>
+                        <c:url value="/rest1" var="rest1Page" />
+                        <a href="${rest1Page}">REST 1</a>
+                    </li>
                 </ul>
             </nav>
         </main>
