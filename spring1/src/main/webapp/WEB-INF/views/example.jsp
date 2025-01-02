@@ -29,13 +29,24 @@
         
         <main>
             <h1>Example Page</h1>
+            
             <section>
                 <h2>GET 방식 요청</h2>
                 <c:url value="/ex1" var="ex1Page" />
                 <form method="get" action="${ex1Page}">
                     <input type="text" name="username" placeholder="이름 입력" />
                     <input type="number" name="age" placeholder="나이 입력" />
-                    <input type="submit" value="제출" />
+                    <input type="submit" value="GET 제출" />
+                </form>
+            </section>
+            
+            <section>
+                <h2>POST 방식 요청</h2>
+                <c:url value="/ex2" var="ex2Page" />
+                <form method="post" action="${ex2Page}">
+                    <input type="text" name="username" placeholder="이름 입력" />
+                    <input type="number" name="age" placeholder="나이 입력" />
+                    <input type="submit" value="POST 제출" />
                 </form>
             </section>
         </main>

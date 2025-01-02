@@ -14,5 +14,5 @@ import lombok.Setter;
 @Builder //-> Builder 디자인 패턴을 적용.
 public class User {
 	private String username;
-	private int age;
+	private Integer age;
 }

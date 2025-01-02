@@ -39,6 +39,18 @@
                         <c:url value="/example" var="examplePage" />
                         <a href="${examplePage}">컨트롤러 예제</a>
                     </li>
+                    <li>
+                        <c:url value="/test" var="testPage" />
+                        <a href="${testPage}">테스트 페이지</a>
+                    </li>
+                    <li>
+                        <c:url value="/test2" var="forwardPage" />
+                        <a href="${forwardPage}">포워드</a>
+                    </li>
+                    <li>
+                        <c:url value="/test3" var="redirectPage" />
+                        <a href="${redirectPage}">리다이렉트</a>
+                    </li>
                 </ul>
             </nav>
         </main>

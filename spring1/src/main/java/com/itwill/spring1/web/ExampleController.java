@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.spring1.dto.User;
@@ -82,6 +84,22 @@ public class ExampleController {
 		
 		// user 객체를 뷰(jsp)에게 전달.
 		model.addAttribute("user", user);
+	}
+	
+	@PostMapping("/ex2")
+//	public String ex2(@RequestParam String username, @RequestParam int age) {
+	public String ex2(/* @ModelAttribute */ User user) {
+		// 디스패쳐 서블릿은 컨트롤러 메서드를 호출하기 위해서, 
+		// (1) User 클래스의 기본 생성자를 호출.
+		// (2) 요청 파라미터 값을 읽어서, 요청 파라미터 이름으로 User 클래스의 setter를 호출.
+		// 요청 파라미터 값이 없을 경우, 기본 타입 int는 에러가 발생하지만,
+		// wrapper 클래스 타입 Integer는 에러가 발생하지 않음.
+		// (3) User 타입 객체를 컨트롤러 메서드의 아규먼트로 전달.
+		// (4) 컨트롤러 메서드의 아규먼트를 Model의 속성으로 추가(@ModelAttribute).
+		
+		log.debug("ex2(user={})", user);
+		
+		return "ex1";
 	}
 	
 }
