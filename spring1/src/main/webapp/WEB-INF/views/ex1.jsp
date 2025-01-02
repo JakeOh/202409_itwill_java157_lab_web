@@ -31,6 +31,13 @@
             </nav>
         </header>
         
+        <main>
+            <h2>요청 처리 결과</h2>
+            <div>${user}</div> <%-- user.toString() --%>
+            <div>username: ${user.username}</div> <%-- user.getUsername() --%>
+            <div>age: ${user.age}</div> <%-- user.getAge() --%>
+        </main>
+        
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 

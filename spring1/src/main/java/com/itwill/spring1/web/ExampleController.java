@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.spring1.dto.User;
+
 import lombok.extern.slf4j.Slf4j;
 
 //POCO(Plain Old C++(C#) Object)
@@ -51,15 +53,35 @@ public class ExampleController {
 	
 	/*
 	 * 이클립스 메뉴 Window -> Preferences -> Java -> Compiler ->
-	 * Store information about method parameters (usable via reflection) 체크.
+	 * Store information about method parameters (usable via reflection) 항목 체크.
 	 * 자바 컴파일러가 컴파일할 때 메서드 파라미터 정보를 저장해서,
 	 * 자바 프로그램이 파라미터 이름을 reflection 기능으로 사용할 수 있도록 함.
+	 * 
+	 * 컨트롤러 메서드의 파라미터를 선언할 때 @RequestParam 애너테이션을 사용하면,
+	 * 디스패쳐 서블릿이 컨트롤러 메서드를 호출할 때, 
+	 * 요청 파라미터 값을 메서드 아규먼트로 전달하게 됨.
+	 * @RequestParam 애너테이션에 name 속성이 설정되지 않은 경우에는 
+	 * 메서드 파라미터 이름으로 요청 파라미터 값을 찾음. (예) request.getParameter("age")
+	 * @RequestParam 애너테이션에 name 속성이 설정된 경우에는
+	 * name 속성으로 요청 파라미터 값을 찾음. (예) request.getParameter("username")
+	 * 디스패쳐 서블릿은 컨트롤러 메서드의 아규먼트(들)을 전달하기 위해서 
+	 * 가능한 경우 타입 변환도 자동으로 수행함.
+	 * (예) Integer.parseInt(request.getParameter("age"))
+	 * 
+	 * @RequestParam 애너테이션의 defaultValue 속성 값을 설정하면
+	 * 요청 파라미터 값이 없는 경우 기본값으로 사용할 수 있음.
 	 */
 	@GetMapping("/ex1")
 	public void ex1(@RequestParam(name = "username") String name, 
-			@RequestParam(defaultValue = "0") int age) {
+			@RequestParam(defaultValue = "0") int age,
+			Model model) {
 		log.debug("ex1(username={}, age={})", name, age);
 		
+		// 요청 파라미터 값들로 User 타입의 객체를 생성.
+		User user = User.builder().username(name).age(age).build();
+		
+		// user 객체를 뷰(jsp)에게 전달.
+		model.addAttribute("user", user);
 	}
 	
 }
