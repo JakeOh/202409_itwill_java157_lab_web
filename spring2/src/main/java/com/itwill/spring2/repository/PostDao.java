@@ -7,5 +7,6 @@ import com.itwill.spring2.domain.Post;
 public interface PostDao {
 
 	List<Post> selectOrderByIdDesc();
+	Post selectById(Integer id);
 	
 }
