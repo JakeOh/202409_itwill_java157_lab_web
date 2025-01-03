@@ -29,5 +29,19 @@
     <bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
         <constructor-arg ref="hikariConfig" />
     </bean>
+    
+    <!-- SqlSessionFactoryBean 빈 생성을 위한 설정: 
+        영속성 프레임워크인 MyBatis에서 데이터 소스(커넥션 풀)을 이용해서 SQL 문장을 실행하고, 
+        그 결과를 처리해서 리턴할 수 있는 객체.
+        SqlSessionFactoryBean sqlSession = new SqlSessionFactoryBean();
+        sqlSession.setDataSource(ds);
+        sqlSession.setMapperLocations("classpath:/mappers/**/*.xml");
+        sqlSession.setConfigLocation("classpath:/mybatis-config.xml");
+    -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds" />
+        <property name="mapperLocations" value="classpath:/mappers/**/*.xml" />
+        <property name="configLocation" value="classpath:/mybatis-config.xml" />
+    </bean>
 
 </beans>

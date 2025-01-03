@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -30,11 +31,14 @@ public class DataSourceTest {
 	 * 스프링 프레임워크: 모델2 MVC(위임 패턴) 아키텍처를 제공하고, 의존성 주입을 제공하는 프레임워크.
 	 */
 	
-	@Autowired
+	@Autowired //-> 스프링 컨테이너에서 생성/관리하는 빈(객체)을 주입받음.
 	private HikariDataSource ds;
 	
+	@Autowired
+	private SqlSessionFactoryBean sqlSession;
+	
 	@Test
-	public void test() throws SQLException {
+	public void testDataSource() throws SQLException {
 		Assertions.assertNotNull(ds);
 		log.debug("ds={}", ds);
 		
@@ -44,6 +48,12 @@ public class DataSourceTest {
 		
 		conn.close();
 		log.debug("커넥션 객체를 풀에 반환.");
+	}
+	
+	@Test
+	public void testSqlSession() {
+		Assertions.assertNotNull(sqlSession);
+		log.debug("sqlSession={}", sqlSession);
 	}
 	
 }
