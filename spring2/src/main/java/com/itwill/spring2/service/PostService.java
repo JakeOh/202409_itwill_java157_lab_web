@@ -40,26 +40,42 @@ public class PostService {
 	
 	// 상세보기 서비스
 	public Post read(Integer id) {
-		// TODO
-		return null;
+		log.debug("read(id={})", id);
+		
+		Post post = postDao.selectById(id);
+		log.debug("post = {}", post);
+		
+		return post;
 	}
 	
 	// 새글작성 서비스
 	public int create(Post post) {
-		// TODO
-		return 0;
+		log.debug("create(post={})", post);
+		
+		int result = postDao.insertPost(post);
+		log.debug("insert result = {}", result);
+		
+		return result;
 	}
 	
 	// 수정하기 서비스
 	public int update(Post post) {
-		// TODO
-		return 0;
+		log.debug("update(post={})", post);
+		
+		int result = postDao.updatePost(post);
+		log.debug("update result = {}", result);
+		
+		return result;
 	}
 	
 	// 삭제하기 서비스
 	public int delete(Integer id) {
-		// TODO
-		return 0;
+		log.debug("delete(id={})", id);
+		
+		int result = postDao.deletePost(id);
+		log.debug("delete result = {}", result);
+		
+		return result;
 	}
 	
 }
