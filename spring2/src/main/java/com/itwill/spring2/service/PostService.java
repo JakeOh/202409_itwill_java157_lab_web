@@ -2,7 +2,7 @@ package com.itwill.spring2.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Post;
@@ -29,12 +29,37 @@ public class PostService {
 //		this.postDao = postDao;
 //	}
 	
+	// 목록 보기 서비스
 	public List<Post> read() {
 		log.debug("read()");
 		
 		List<Post> list = postDao.selectOrderByIdDesc();
 		
 		return list;
+	}
+	
+	// 상세보기 서비스
+	public Post read(Integer id) {
+		// TODO
+		return null;
+	}
+	
+	// 새글작성 서비스
+	public int create(Post post) {
+		// TODO
+		return 0;
+	}
+	
+	// 수정하기 서비스
+	public int update(Post post) {
+		// TODO
+		return 0;
+	}
+	
+	// 삭제하기 서비스
+	public int delete(Integer id) {
+		// TODO
+		return 0;
 	}
 	
 }
