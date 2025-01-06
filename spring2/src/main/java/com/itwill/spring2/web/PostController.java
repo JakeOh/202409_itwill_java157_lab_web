@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.spring2.domain.Post;
 import com.itwill.spring2.service.PostService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,4 +37,18 @@ public class PostController {
 		// -> 뷰의 이름: /WEB-INF/views/post/list.jsp
 	}
 
+	@GetMapping("/create")
+	public void create() {
+		log.debug("GET create()");
+	}
+	
+	@PostMapping("/create")
+	public String create(Post post) {
+		log.debug("POST create(post={})", post);
+		
+		int result = postService.create(post);
+		
+		return "redirect:/post/list";
+	}
+	
 }
