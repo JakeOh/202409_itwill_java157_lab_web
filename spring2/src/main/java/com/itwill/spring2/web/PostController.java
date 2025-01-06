@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.spring2.domain.Post;
+import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.service.PostService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,10 +44,11 @@ public class PostController {
 	}
 	
 	@PostMapping("/create")
-	public String create(Post post) {
-		log.debug("POST create(post={})", post);
+	public String create(PostCreateDto dto) {
+		log.debug("POST create(dto={})", dto);
 		
-		int result = postService.create(post);
+		// controller ==> service 메서드 호출 & DTO를 아규먼트로 전달.
+		int result = postService.create(dto);
 		
 		return "redirect:/post/list";
 	}

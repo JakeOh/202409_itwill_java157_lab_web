@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Post;
+import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.repository.PostDao;
 
 import lombok.RequiredArgsConstructor;
@@ -49,10 +50,11 @@ public class PostService {
 	}
 	
 	// 새글작성 서비스
-	public int create(Post post) {
-		log.debug("create(post={})", post);
+	public int create(PostCreateDto dto) {
+		log.debug("create(dto={})", dto);
 		
-		int result = postDao.insertPost(post);
+		// PostService ==> PostDao 계층의 메서드 호출 & Entity를 아규먼트로 전달.
+		int result = postDao.insertPost(dto.toEntity());
 		log.debug("insert result = {}", result);
 		
 		return result;
