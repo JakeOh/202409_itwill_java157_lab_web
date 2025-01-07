@@ -53,7 +53,11 @@ public class PostController {
 		return "redirect:/post/list";
 	}
 	
-	@GetMapping("/details")
+	@GetMapping({ "/details", "/modify" })
+	//-> GET 방식의 /post/details와 /post/modify 요청 주소들을 처리하는 컨트롤러
+	//-> 메서드의 리턴 타입이 void이므로
+	// 요청 주소가 details일 때 뷰의 이름은 details.jsp
+	// 요청 주소가 modify일 때 뷰의 이름은 modify.jsp
 	public void details(@RequestParam Integer id, Model model) {
 		log.debug("details(id={})", id);
 		
