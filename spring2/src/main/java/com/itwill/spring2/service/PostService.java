@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Post;
 import com.itwill.spring2.dto.PostCreateDto;
+import com.itwill.spring2.dto.PostSearchDto;
 import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.repository.PostDao;
 
@@ -79,6 +80,16 @@ public class PostService {
 		log.debug("delete result = {}", result);
 		
 		return result;
+	}
+	
+	public List<Post> read(PostSearchDto dto) {
+		log.debug("read(dto={})", dto);
+		
+		// 영속성 계층의 메서드를 호출해서 DB에서 select를 수행하고 결과를 가져옴.
+		List<Post> list = postDao.search(dto);
+		log.debug("# of search result = {}", list.size());
+		
+		return list;
 	}
 	
 }
