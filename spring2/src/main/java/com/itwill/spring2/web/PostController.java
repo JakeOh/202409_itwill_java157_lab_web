@@ -7,12 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.spring2.domain.Post;
 import com.itwill.spring2.dto.PostCreateDto;
 import com.itwill.spring2.service.PostService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,6 +51,16 @@ public class PostController {
 		int result = postService.create(dto);
 		
 		return "redirect:/post/list";
+	}
+	
+	@GetMapping("/details")
+	public void details(@RequestParam Integer id, Model model) {
+		log.debug("details(id={})", id);
+		
+		// 서비스 계층의 메서드를 호출해서 상세보기 화면에 필요한 데이터를 읽어옴.
+		Post post = postService.read(id);
+		// 상세보기 내용을 뷰에 전달하기 위해서 Model에 속성으로 추가.
+		model.addAttribute("post", post);
 	}
 	
 }
