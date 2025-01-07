@@ -20,4 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // 업데이트 버튼에 클릭 이벤트 리스너를 설정.
+    btnUpdate.addEventListener('click', () => {
+        // 제목과 내용이 비어 있는 지 확인.
+        if (inputTitle.value === '' || textContent.value === '') {
+            alert('제목과 내용은 반드시 입력하세요.');
+            return;
+        }
+        
+        // 업데이트한 내용을 저장할 것인 지 확인.
+        const result = confirm('변경 내용을 저장할까요?');
+        if (result) {
+            // 폼 제출 방식(method), 요청 주소(action)를 설정하고, 양식 데이터를 보냄.
+            modifyForm.method = 'post';
+            modifyForm.action = 'update';
+            modifyForm.submit();
+        }
+        
+    });
+    
 });

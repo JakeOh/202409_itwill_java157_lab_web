@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Post;
 import com.itwill.spring2.dto.PostCreateDto;
+import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.repository.PostDao;
 
 import lombok.RequiredArgsConstructor;
@@ -61,10 +62,10 @@ public class PostService {
 	}
 	
 	// 수정하기 서비스
-	public int update(Post post) {
-		log.debug("update(post={})", post);
+	public int update(PostUpdateDto dto) {
+		log.debug("update(dto={})", dto);
 		
-		int result = postDao.updatePost(post);
+		int result = postDao.updatePost(dto.toEntity());
 		log.debug("update result = {}", result);
 		
 		return result;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.spring2.domain.Post;
 import com.itwill.spring2.dto.PostCreateDto;
+import com.itwill.spring2.dto.PostUpdateDto;
 import com.itwill.spring2.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -65,6 +66,26 @@ public class PostController {
 		Post post = postService.read(id);
 		// 상세보기 내용을 뷰에 전달하기 위해서 Model에 속성으로 추가.
 		model.addAttribute("post", post);
+	}
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam Integer id) {
+		log.debug("delete(id={})", id);
+		
+		postService.delete(id);
+		
+		// 목록 페이지로 이동(redirect)
+		return "redirect:/post/list";
+	}
+	
+	@PostMapping("/update")
+	public String update(PostUpdateDto dto) {
+		log.debug("update(dto={})", dto);
+		
+		postService.update(dto);
+		
+		// 상세보기 페이지로 이동(redirect).
+		return "redirect:/post/details?id=" + dto.getId();
 	}
 	
 }
