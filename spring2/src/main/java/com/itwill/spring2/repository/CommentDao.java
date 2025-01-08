@@ -12,5 +12,6 @@ public interface CommentDao {
 	int deleteByPostId(Integer postId);
 	int updateComment(Comment comment);
 	Integer selectCommentCount(Integer postId);
+	Comment selectById(Integer id);
 
 }

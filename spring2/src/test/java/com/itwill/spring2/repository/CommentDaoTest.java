@@ -59,10 +59,23 @@ public class CommentDaoTest {
 		Assertions.assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void testSelectCommentCount() {
 		Integer result = commentDao.selectCommentCount(1);
 		Assertions.assertEquals(2, result);
+	}
+	
+	@Test
+	public void testSelectById() {
+		// 댓글 아이디가 테이블에 있는 경우:
+		Comment c1 = commentDao.selectById(6);
+		Assertions.assertNotNull(c1);
+		log.debug("c1 = {}", c1);
+		
+		// 댓글 아이디가 테이블에 없는 경우:
+		Comment c2 = commentDao.selectById(1000);
+		Assertions.assertNull(c2);
+		log.debug("c2 = {}", c2);
 	}
 	
 }

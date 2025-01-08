@@ -38,4 +38,9 @@
         select count(*) from comments where post_id = #{postId}
     </select>
     
+    <!-- 해당 아이디의 댓글 1개 검색(selectById) -->
+    <select id="selectById" resultType="Comment">
+        select * from comments where id = #{id}
+    </select>
+    
 </mapper>
