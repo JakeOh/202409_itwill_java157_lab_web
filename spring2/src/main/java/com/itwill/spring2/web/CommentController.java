@@ -22,6 +22,7 @@ public class CommentController {
 	private final CommentService commentService;
 	
 	@GetMapping("/{id}")
+	//-> 요청 주소가 변수처럼 변할 수 있는 값(path variable)일 때, {varName} 형식으로 작성.
 	public Comment getCommentById(@PathVariable Integer id) {
 		// @PathVariable: 요청 주소의 일부가 변수처럼 변할 수 있는 값일 때,
         // 디스패쳐 서블릿이 요청 주소를 분석해서 메서드의 아규먼트로 전달해줌.
