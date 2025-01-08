@@ -20,13 +20,49 @@ public class CommentDaoTest {
 
 	@Autowired CommentDao commentDao;
 	
-	@Test
+//	@Test
 	public void testSelectByPostId() {
 		Assertions.assertNotNull(commentDao);
 		
 		List<Comment> comments = commentDao.selectByPostId(1);
 		log.debug("# of comments = {}", comments.size());
 		comments.forEach(x -> log.debug("{}", x));
+	}
+	
+//	@Test
+	public void testInsertComment() {
+		Comment comment = Comment.builder()
+				.postId(1).ctext("comment insert test").username("admin")
+				.build();
+		int result = commentDao.insertComment(comment);
+		Assertions.assertEquals(1, result);
+	}
+	
+//	@Test
+	public void testDeleteById() {
+		int result = commentDao.deleteById(1);
+		Assertions.assertEquals(1, result);
+	}
+	
+//	@Test
+	public void testDeleteByPostId() {
+		int result = commentDao.deleteByPostId(1);
+		Assertions.assertEquals(4, result);
+	}
+	
+//	@Test
+	public void testUpdateComment() {
+		Comment comment = Comment.builder()
+				.id(6).ctext("댓글 업데이트 테스트")
+				.build();
+		int result = commentDao.updateComment(comment);
+		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	public void testSelectCommentCount() {
+		Integer result = commentDao.selectCommentCount(1);
+		Assertions.assertEquals(2, result);
 	}
 	
 }
