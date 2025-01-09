@@ -69,15 +69,30 @@
             </main>
             
             <section>
-                <div class="d-inline-flex gap-1">
-                    <button class="btn btn-primary" type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseComments"
-                        aria-expanded="false"
-                        aria-controls="collapseExample">댓글 보기</button>
+                <div class="mt-2 d-inline-flex gap-1">
+                    <button class="btn btn-outline-secondary"
+                        id="btnToggleComment">댓글 보기</button>
                 </div>
-                <div class="collapse" id="collapseComments">
-                    <div class="card card-body">댓글 입력/목록 들어갈 자리</div>
+                
+                <!-- 댓글 보기/감추기 토글 버튼에 의해서 접기/펼치기를 할 영역 -->
+                <div class="mt-2 collapse" id="collapseComments">
+                    <!-- 댓글 등록 UI -->
+                    <div class="mt-2 card card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <input class="d-none" id="username" value="guest" readonly />
+                                <textarea class="form-control" rows="3"
+                                    id="ctext" placeholder="댓글 입력"></textarea>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-outline-success"
+                                    id="btnRegisterComment">등록</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 댓글 목록 UI -->
+                    <div class="my-2" id="divComments">댓글 목록</div>
                 </div>
             </section>
             
@@ -87,5 +102,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
             crossorigin="anonymous"></script>
+            
+        <c:url var="commentsJS" value="/js/comments.js" />
+        <script src="${commentsJS}"></script>
     </body>
 </html>
