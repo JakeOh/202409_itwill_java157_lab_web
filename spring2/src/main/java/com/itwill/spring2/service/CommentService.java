@@ -1,5 +1,8 @@
 package com.itwill.spring2.service;
 
+//import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Comment;
@@ -27,4 +30,21 @@ public class CommentService {
 		return CommentItemDto.fromEntity(comment);
 	}
 
+	// 특정 포스트에 달려 있는 모든 댓글 목록을 검색하는 서비스
+	public List<CommentItemDto> readyByPostId(Integer postId) {
+		log.debug("readByPostId(postId={})", postId);
+		
+		List<Comment> list = commentDao.selectByPostId(postId);
+		
+//		List<CommentItemDto> result = new ArrayList<>();
+//		for (Comment c : list) {
+//			result.add(CommentItemDto.fromEntity(c));
+//		}
+//		return result;
+		
+		return list.stream()
+				.map(CommentItemDto::fromEntity) // .map(x -> CommentItemDto.fromEntity(x))
+				.toList();
+	}
+	
 }
