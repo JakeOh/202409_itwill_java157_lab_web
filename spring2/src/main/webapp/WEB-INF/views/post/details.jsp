@@ -67,6 +67,20 @@
                     </div>
                 </div>
             </main>
+            
+            <section>
+                <div class="d-inline-flex gap-1">
+                    <button class="btn btn-primary" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseComments"
+                        aria-expanded="false"
+                        aria-controls="collapseExample">댓글 보기</button>
+                </div>
+                <div class="collapse" id="collapseComments">
+                    <div class="card card-body">댓글 입력/목록 들어갈 자리</div>
+                </div>
+            </section>
+            
         </div>
         
         <!-- Bootstrap JS -->
