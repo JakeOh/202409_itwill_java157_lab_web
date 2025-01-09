@@ -68,8 +68,9 @@ public class CommentController {
 	@PostMapping
 	public ResponseEntity<Integer> registerComment(@RequestBody CommentCreateDto dto) {
 		// @RequestBody:
-		// 디스패쳐 서블릿에서 Ajax 요청에서 요청 패킷 몸통(body)에 포함된 JSON 문자열을 읽고
-		// jackson-databind 라이브러리를 사용해서 자바 객체로 변환.
+		// 디스패쳐 서블릿이 Ajax 요청에서 요청 패킷 몸통(body)에 포함된 JSON 문자열을 읽고
+		// jackson-databind 라이브러리를 사용해서 자바 객체로 변환 후
+		// 컨트롤러 메서드의 아규먼트로 전달해줌.
 		
 		log.debug("registerComment(dto={})", dto);
 		
