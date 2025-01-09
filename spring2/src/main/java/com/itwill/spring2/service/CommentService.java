@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.spring2.domain.Comment;
 import com.itwill.spring2.dto.CommentCreateDto;
 import com.itwill.spring2.dto.CommentItemDto;
+import com.itwill.spring2.dto.CommentUpdateDto;
 import com.itwill.spring2.repository.CommentDao;
 
 import lombok.RequiredArgsConstructor;
@@ -62,6 +63,13 @@ public class CommentService {
 		log.debug("delete(id={})", id);
 		
 		return commentDao.deleteById(id);
+	}
+	
+	// 댓글 내용을 수정하는 서비스
+	public int update(CommentUpdateDto dto) {
+		log.debug("update(dto={})", dto);
+		
+		return commentDao.updateComment(dto.toEntity());
 	}
 	
 }

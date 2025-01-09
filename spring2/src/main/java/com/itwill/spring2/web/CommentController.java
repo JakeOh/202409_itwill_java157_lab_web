@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.spring2.dto.CommentCreateDto;
 import com.itwill.spring2.dto.CommentItemDto;
+import com.itwill.spring2.dto.CommentUpdateDto;
 import com.itwill.spring2.service.CommentService;
 
 import lombok.RequiredArgsConstructor;
@@ -85,6 +87,17 @@ public class CommentController {
 		log.debug("deleteComment(id={})", id);
 		
 		int result = commentService.delete(id);
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Integer> updateComment(@PathVariable Integer id,
+			@RequestBody CommentUpdateDto dto) {
+		log.debug("updateComment(id={}, dto={})", id, dto);
+		
+		dto.setId(id);
+		int result = commentService.update(dto);
 		
 		return ResponseEntity.ok(result);
 	}
