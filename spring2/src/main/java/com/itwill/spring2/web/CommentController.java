@@ -3,6 +3,7 @@ package com.itwill.spring2.web;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,6 +76,15 @@ public class CommentController {
 		log.debug("registerComment(dto={})", dto);
 		
 		int result = commentService.create(dto);
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Integer> deleteComment(@PathVariable Integer id) {
+		log.debug("deleteComment(id={})", id);
+		
+		int result = commentService.delete(id);
 		
 		return ResponseEntity.ok(result);
 	}

@@ -57,4 +57,11 @@ public class CommentService {
 		return result;
 	}
 	
+	// 아이디가 일치하는 댓글을 삭제하는 서비스
+	public int delete(Integer id) {
+		log.debug("delete(id={})", id);
+		
+		return commentDao.deleteById(id);
+	}
+	
 }
