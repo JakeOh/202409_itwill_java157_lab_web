@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Comment;
+import com.itwill.spring2.dto.CommentCreateDto;
 import com.itwill.spring2.dto.CommentItemDto;
 import com.itwill.spring2.repository.CommentDao;
 
@@ -45,6 +46,15 @@ public class CommentService {
 		return list.stream()
 				.map(CommentItemDto::fromEntity) // .map(x -> CommentItemDto.fromEntity(x))
 				.toList();
+	}
+
+	// 특정 포스트에 댓글을 추가하는 서비스
+	public int create(CommentCreateDto dto) {
+		log.debug("create(dto={})", dto);
+		
+		int result = commentDao.insertComment(dto.toEntity());
+		
+		return result;
 	}
 	
 }

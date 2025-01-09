@@ -1,11 +1,16 @@
 package com.itwill.spring2.web;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itwill.spring2.dto.CommentCreateDto;
 import com.itwill.spring2.dto.CommentItemDto;
 import com.itwill.spring2.service.CommentService;
 
@@ -49,6 +54,27 @@ public class CommentController {
         // jackson-databind 라이브러리에서 
         // Java 8 이후에 생긴 날짜/시간 타입(LocalDate, LocalDateTime)을 JSON으로 변환하기 위해서는
         // jackson-datatype-jsr310 모듈이 필요함(POM.xml에 dependency 추가).
+	}
+	
+	@GetMapping("/all/{postId}")
+	public ResponseEntity<List<CommentItemDto>> getAllCommentsByPostId(@PathVariable Integer postId) {
+		log.debug("getAllCommentsByPostId(postId={})", postId);
+		
+		List<CommentItemDto> list = commentService.readyByPostId(postId);
+		
+		return ResponseEntity.ok(list);
+	}
+	
+	@PostMapping
+	public ResponseEntity<Integer> registerComment(@RequestBody CommentCreateDto dto) {
+		// @RequestBody:
+		// Ajax 요청에서 요청 패킷 몸통(body)에 포함된 JSON 문자열을 읽어서 자바 객체로 변환.
+		
+		log.debug("registerComment(dto={})", dto);
+		
+		int result = commentService.create(dto);
+		
+		return ResponseEntity.ok(result);
 	}
 	
 }
