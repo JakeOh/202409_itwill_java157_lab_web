@@ -113,8 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-outline-danger btn-sm">삭제</button>
-                    <button class="btn btn-outline-primary btn-sm">수정</button>
+                    <button class="btnDeleteComment btn btn-outline-danger btn-sm"
+                        data-id="${comment.id}">삭제</button>
+                    <button class="btnDeleteUpdate btn btn-outline-primary btn-sm"
+                        data-id="${comment.id}">수정</button>
                 </div>
             </li>
             `;
@@ -123,6 +125,47 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 작성된 html을 div에 삽입.
         divComments.innerHTML = html;
+        
+        // html 코드가 div에 삽입된 후에 (삭제/수정) 버튼들을 찾을 수 있음
+        // -> 이벤트 리스너를 설정할 수 있음.
+        
+        // 모든 댓글 삭제 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
+        const btnDeletes = document.querySelectorAll('button.btnDeleteComment');
+        for (const btn of btnDeletes) {
+            btn.addEventListener('click', deleteComment);
+        }
+        
+    }
+    
+    // 댓글 삭제 버튼의 클릭 이벤트 리스너(콜백)
+    function  deleteComment(event) {
+        console.log(event.target);
+        //-> 모든 이벤트 리스너(콜백)으 event 객체를 아규먼트로 전달받음.
+        //-> event 객체는 target 속성(이벤트가 발생한 HTML 요소)을 가지고 있음.
+        
+        // 댓글 삭제 여부를 확인
+        const result = confirm('댓글을 정말 삭제할까요?');
+        if (!result) { // 사용자가 [취소]를 클릭했을 때
+            return; // 함수 종료
+        }
+        
+        // HTML 요소의 속성(attribute)의 값을 찾음:
+        const commentId = event.target.getAttribute('data-id');
+        
+        // Ajax 댓글 삭제 요청 REST API(요청 URI)
+        const uri = `../api/comment/${commentId}`;
+        
+        // Ajax 요청을 보냄.
+        axios
+        .delete(uri)
+        .then((response) => {
+            // console.log(response);
+            alert('댓글이 삭제됐습니다.');
+            getAllComments(); // 댓글 목록 갱신
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
     
 });
