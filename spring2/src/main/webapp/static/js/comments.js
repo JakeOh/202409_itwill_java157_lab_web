@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 부트스트랩 모달 객체를 생성.
     const commentModal = new bootstrap.Modal('div#commentModal', { backdrop: true });
     
+    // 모달의 [저장] 버튼을 찾고, 클릭 이벤트 리스너를 설정.
+    const btnUpdateCmnt = document.querySelector('button#btnUpdateCmnt');
+    btnUpdateCmnt.addEventListener('click', updateComment);
     
     /* -------------------- (콜백) 함수 선언 -------------------- */
     
@@ -180,7 +183,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function showCommentModal(event) {
         // 이벤트가 발생한 타겟(HTML 요소)에서 data-id 속성 값을 찾음.
         const commentId = event.target.getAttribute('data-id');
-        commentModal.show(); // bootstrap.Modal 객체의 show() 메서드 호출 - 모달 보여주기
+        //commentModal.show(); // bootstrap.Modal 객체의 show() 메서드 호출 - 모달 보여주기
+        
+        // TODO: 댓글 아이디로 댓글 1개 검색하기 Ajax 요청
+        // -> 성공 콜백에서 모달(commentModal)의 input과 textarea를 채움.
+        // -> 모달 보여주기
     }
+    
+    // TODO: 모달의 [저장] 버튼 클릭 리스너(콜백) 작성
+    // -> 댓글 업데이트 Ajax 요청을 보내고, 성공/실패 콜백 작성.
     
 });
