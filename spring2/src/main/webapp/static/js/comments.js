@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.data === 1) {
                     alert('1개 댓글 등록 성공');
                     document.querySelector('textarea#ctext').value = '';
+                    // 댓글 목록을 다시 불러옴.
+                    getAllComments();
                 }
             })
             .catch((error) => {
@@ -90,14 +92,36 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 댓글 목록(댓글 객체들의 배열)을 아규먼트로 전달받아서 div에 출력할 html을 작성.
     function makeCommentElements(data) {
+        // 댓글 목록을 출력할 div 영역
         const divComments = document.querySelector('div#divComments');
-        
-        let html = '<ul>'; // div에 출력할 html 코드를 저장할 문자열 변수
+
+        // div에 출력할 html 코드를 저장할 문자열 변수        
+        let html = '<ul class="list-group list-group-flush">';
         for (const comment of data) {
-            html += `<li> ${comment.ctext} </li>`;
+            // timestamp를 날짜/시간 포맷 문자열로 변환
+            const modifiedTime = new Date(comment.modifiedTime).toLocaleString();
+            
+            html += `
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div>
+                    <div class="text-secondary" style="font-size: 0.825rem;">
+                        <span>${comment.username}</span>
+                        <span>${modifiedTime}</span>
+                    </div>
+                    <div>
+                        ${comment.ctext}
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-outline-danger btn-sm">삭제</button>
+                    <button class="btn btn-outline-primary btn-sm">수정</button>
+                </div>
+            </li>
+            `;
         }
         html += '</ul>';
         
+        // 작성된 html을 div에 삽입.
         divComments.innerHTML = html;
     }
     
