@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // btnRegisterComment 버튼에 클릭 이벤트 리스너를 설정.
     btnRegisterComment.addEventListener('click', registerComment);
     
+    // 부트스트랩 모달 객체를 생성.
+    const commentModal = new bootstrap.Modal('div#commentModal', { backdrop: true });
+    
     
     /* -------------------- (콜백) 함수 선언 -------------------- */
     
@@ -115,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div>
                     <button class="btnDeleteComment btn btn-outline-danger btn-sm"
                         data-id="${comment.id}">삭제</button>
-                    <button class="btnDeleteUpdate btn btn-outline-primary btn-sm"
+                    <button class="btnUpdateComment btn btn-outline-primary btn-sm"
                         data-id="${comment.id}">수정</button>
                 </div>
             </li>
@@ -133,6 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnDeletes = document.querySelectorAll('button.btnDeleteComment');
         for (const btn of btnDeletes) {
             btn.addEventListener('click', deleteComment);
+        }
+        
+        // 모든 댓글 수정 버튼들을 찾아서 클릭 이벤트 리스너를 설정.
+        const btnModifies = document.querySelectorAll('button.btnUpdateComment');
+        for (const btn of btnModifies) {
+            btn.addEventListener('click', showCommentModal);
         }
         
     }
@@ -166,6 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch((error) => {
             console.log(error);
         });
+    }
+    
+    function showCommentModal(event) {
+        // 이벤트가 발생한 타겟(HTML 요소)에서 data-id 속성 값을 찾음.
+        const commentId = event.target.getAttribute('data-id');
+        commentModal.show(); // bootstrap.Modal 객체의 show() 메서드 호출 - 모달 보여주기
     }
     
 });

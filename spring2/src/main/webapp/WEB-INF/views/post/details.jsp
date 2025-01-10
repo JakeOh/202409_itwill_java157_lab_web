@@ -96,6 +96,31 @@
                 </div>
             </section>
             
+            <!-- 댓글 업데이트 모달(다이얼로그) -->
+            <div id="commentModal" class="modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">댓글 업데이트</h5>
+                            <button class="btn-close" data-bs-dismiss="modal" 
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 수정할 댓글 아이디(번호) -->
+                            <input class="d-none" id="modalCommentId" readonly />
+                            <!-- 수정할 댓글 내용 -->
+                            <textarea class="form-control" id="modalCommentText"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-secondary" 
+                                data-bs-dismiss="modal">취소</button>
+                            <button class="btn btn-outline-success" 
+                                id="btnUpdateCmnt">저장</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         
         <!-- Bootstrap JS -->
