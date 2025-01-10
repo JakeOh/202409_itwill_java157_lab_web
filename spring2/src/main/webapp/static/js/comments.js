@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (btnToggleComment.innerHTML === '댓글 보기') {
             btnToggleComment.innerHTML = '댓글 감추기';
+            // 댓글 목록 가져오기 요청을 보냄.
+            getAllComments();
         } else {
             btnToggleComment.innerHTML = '댓글 보기';
         }
@@ -63,6 +65,40 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch((error) => {
                 console.log(error);
             });
+    }
+    
+    // 포스트에 달려 있는 댓글 목록 가져오기
+    function getAllComments() {
+        // 댓글 목록을 요청하기 위한 포스트 아이디(글 번호)
+        const postId = document.querySelector('input#id').value;
+        
+        // 댓글 목록을 요청하기 위한 REST API(요청 URI)
+        const uri = `../api/comment/all/${postId}`;
+        
+        // Ajax 요청을 보냄.
+        axios
+        .get(uri)
+        .then((response) => {
+            console.log(response); //-> response.data 속성에 서버가 보내준 댓글 목록이 있음.
+            // divComments 영역에 댓글 목록을 출력.
+            makeCommentElements(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+    
+    // 댓글 목록(댓글 객체들의 배열)을 아규먼트로 전달받아서 div에 출력할 html을 작성.
+    function makeCommentElements(data) {
+        const divComments = document.querySelector('div#divComments');
+        
+        let html = '<ul>'; // div에 출력할 html 코드를 저장할 문자열 변수
+        for (const comment of data) {
+            html += `<li> ${comment.ctext} </li>`;
+        }
+        html += '</ul>';
+        
+        divComments.innerHTML = html;
     }
     
 });
