@@ -34,7 +34,8 @@ public class MemberService {
 		
 		Member member = memberDao.selectByEmail(email);
 		
-		return (member == null) ? true : false;
+//		return (member == null) ? true : false;
+		return (member == null);
 	}
 
 }
