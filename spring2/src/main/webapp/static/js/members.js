@@ -4,6 +4,17 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // username 중복 체크 결과를 저장할 변수.
+    // true이면 회원가입이 가능한 username. false이면 [작성완료] 버튼은 비활성화.
+    let isUsernameChecked = false;
+    
+    // password를 입력했는 지 여부를 저장할 변수. false이면 [작성완료] 버튼은 비활성화.
+    let isPasswordChecked = false;
+    
+    // email 중복 체크 결과를 저장할 변수.
+    // true이면 회원가입이 가능한 email. false이면 [작성완료] 버튼은 비활성화.
+    let isEmailChecked = false;
+    
     const inputUsername = document.querySelector('input#username');
     const checkUsernameResult = document.querySelector('div#checkUsernameResult');
     const inputPassword = document.querySelector('input#password');
@@ -16,10 +27,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     /* -------------------- 함수 선언 -------------------- */
+    function changeButtonState() {
+        if (isUsernameChecked && isPasswordChecked && isEmailChecked) {
+            // 버튼 활성화 - class 속성들 중에서 'disabled'를 제거.
+            btnSignUp.classList.remove('disabled');
+        } else {
+            // 버튼 비활성화 - class 속성에 'disabled'를 추가.
+            btnSignUp.classList.add('disabled');
+        }
+    }
+    
     function checkUsername() {
         const username = inputUsername.value;
         if (username === '') {
             checkUsernameResult.innerHTML = '사용자 아이디는 필수 입력 항목입니다.';
+            checkUsernameResult.classList.add('text-danger');
+            checkUsernameResult.classList.remove('text-success');
+            
+            isUsernameChecked = false;
+            changeButtonState();
+            
             return;
         }
         
@@ -36,9 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(data);
         if (data === 'Y') {
             checkUsernameResult.innerHTML = '멋진 아이디입니다.';
+            checkUsernameResult.classList.add('text-success');
+            checkUsernameResult.classList.remove('text-danger');
+            isUsernameChecked = true;
         } else {
             checkUsernameResult.innerHTML = '사용할 수 없는 아이디입니다.';
+            checkUsernameResult.classList.add('text-danger');
+            checkUsernameResult.classList.remove('text-success');
+            isUsernameChecked = false;
         }
+        changeButtonState();
     }
     
 });
