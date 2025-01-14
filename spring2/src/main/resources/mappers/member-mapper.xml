@@ -13,5 +13,11 @@
     <select id="selectByEmail" resultType="Member">
         select * from members where email = #{email}
     </select>
+    
+    <!-- 회원 가입에서 사용할 SQL -->
+    <insert id="insert">
+        insert into members (username, password, email, created_time, modified_time)
+        values (#{username}, #{password}, #{email}, systimestamp, systimestamp)
+    </insert>
 
 </mapper>

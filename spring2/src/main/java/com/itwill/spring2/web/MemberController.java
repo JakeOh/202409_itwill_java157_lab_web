@@ -3,11 +3,12 @@ package com.itwill.spring2.web;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.itwill.spring2.domain.Member;
+import com.itwill.spring2.dto.MemberSignUpDto;
 import com.itwill.spring2.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,21 @@ public class MemberController {
 	@GetMapping("/signup")
 	public void signUp() {
 		log.debug("[GET] signUp()");
+	}
+	
+	@PostMapping("/signup")
+	public String signUp(MemberSignUpDto dto) {
+		log.debug("[POST] signUp(dto={})", dto);
+		
+		memberService.create(dto);
+		
+		// 회원 가입 성공 이후에는 로그인 페이지로 이동(redirect)
+		return "redirect:/user/signin";
+	}
+	
+	@GetMapping("/signin")
+	public void signIn() {
+		log.debug("[GET] signIn()");
 	}
 	
 	// username 중복체크

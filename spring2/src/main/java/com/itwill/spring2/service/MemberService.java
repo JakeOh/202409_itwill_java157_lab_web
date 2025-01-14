@@ -3,6 +3,7 @@ package com.itwill.spring2.service;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Member;
+import com.itwill.spring2.dto.MemberSignUpDto;
 import com.itwill.spring2.repository.MemberDao;
 
 import lombok.RequiredArgsConstructor;
@@ -38,4 +39,12 @@ public class MemberService {
 		return (member == null);
 	}
 
+	public int create(MemberSignUpDto dto) {
+		log.debug("create(dto={})", dto);
+		
+		int result = memberDao.insert(dto.toEntity());
+		
+		return result;
+	}
+	
 }
