@@ -69,6 +69,18 @@ public class MemberController {
 		return "redirect:" + targetPage;
 	}
 	
+	@GetMapping("/signout")
+	public String singOut(HttpSession session) {
+		log.debug("singOut()");
+		
+		// 로그아웃 - 세션에 저장된 로그인 정보를 지움. 세션을 무효화(invalidate).
+		session.removeAttribute("signedInUser");
+		session.invalidate();
+		
+		// 로그아웃 이후에 로그인 페이지로 이동(redirect)
+		return "redirect:/user/signin";
+	}
+	
 	// username 중복체크
 	// 중복되지 않은 username이면 "Y", 중복된 username이면 "N"을 전송(응답).
 	@GetMapping("/checkusername")
