@@ -18,13 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputUsername = document.querySelector('input#username');
     const checkUsernameResult = document.querySelector('div#checkUsernameResult');
     const inputPassword = document.querySelector('input#password');
+    const checkPasswordResult = document.querySelector('div#checkPasswordResult');
     const inputEmail = document.querySelector('input#email');
     const checkEmailResult = document.querySelector('div#checkEmailResult');
-    const btnSignUp = document.querySelector('button#signUp');
+    const btnSignUp = document.querySelector('button#btnSignUp');
     
-    // inputUsername 요소에 'change' 이벤트 리스너를 설정
+    // inputUsername 요소에 'change' 이벤트 리스너를 설정.
     inputUsername.addEventListener('change', checkUsername);
     
+    // inputPassword 요소에 'change' 이벤트 리스너를 설정.
+    inputPassword.addEventListener('change', checkPassword);
+    
+    // inputEmail 요소에 'change' 이벤트 리스너를 설정.
+    inputEmail.addEventListener('change', checkEmail);
     
     /* -------------------- 함수 선언 -------------------- */
     function changeButtonState() {
@@ -71,6 +77,59 @@ document.addEventListener('DOMContentLoaded', () => {
             checkUsernameResult.classList.add('text-danger');
             checkUsernameResult.classList.remove('text-success');
             isUsernameChecked = false;
+        }
+        changeButtonState();
+    }
+    
+    function checkPassword() {
+        if (inputPassword.value === '') {
+            checkPasswordResult.innerHTML = '비밀번호는 필수입력 항목입니다.';
+            checkPasswordResult.classList.add('text-danger');
+            checkPasswordResult.classList.remove('text-success');
+            isPasswordChecked = false;
+        } else {
+            checkPasswordResult.innerHTML = '사용할 수 있는 비밀번호입니다.';
+            checkPasswordResult.classList.add('text-success');
+            checkPasswordResult.classList.remove('text-danger');
+            isPasswordChecked = true;
+        }
+        changeButtonState();
+    }
+    
+    function checkEmail() {
+        // inputEmail에 입력된 값이 있는 지를 체크.
+        if (inputEmail.value === '') {
+            checkEmailResult.innerHTML = '이메일은 필수입력 항목입니다.';
+            checkEmailResult.classList.add('text-danger');
+            checkEmailResult.classList.remove('text-success');
+            isEmailChecked = false;
+            changeButtonState();
+            
+            return;
+        }
+        
+        // 이메일 중복 체크 REST API(요청 URI)
+        const uri = `./checkemail?email=${encodeURIComponent(inputEmail.value)}`;
+        
+        // Ajax 요청을 보냄.
+        axios
+        .get(uri)
+        .then(handleCheckEmailResp)
+        .catch((error) => console.log(error));
+    }
+    
+    function handleCheckEmailResp({ data }) {
+        console.log(data);
+        if (data === 'Y') { // 회원 가입 가능한 이메일
+            checkEmailResult.innerHTML = '사용가능한 이메일입니다.';
+            checkEmailResult.classList.add('text-success');
+            checkEmailResult.classList.remove('text-danger');
+            isEmailChecked = true;
+        } else { // 중복된 이메일
+            checkEmailResult.innerHTML = '이미 사용중인 이메일입니다.';
+            checkEmailResult.classList.add('text-danger');
+            checkEmailResult.classList.remove('text-success');
+            isEmailChecked = false;
         }
         changeButtonState();
     }

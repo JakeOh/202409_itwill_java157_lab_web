@@ -37,6 +37,7 @@
                             <input type="password" class="form-control" id="password"
                                 name="password" placeholder="비밀번호" required />
                         </div>
+                        <div id="checkPasswordResult"></div>
                         
                         <div class="mt-2">
                             <input type="email" class="form-control" id="email"
