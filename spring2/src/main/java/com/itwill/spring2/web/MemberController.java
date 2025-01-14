@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwill.spring2.domain.Member;
+import com.itwill.spring2.dto.MemberSignInDto;
 import com.itwill.spring2.dto.MemberSignUpDto;
 import com.itwill.spring2.service.MemberService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,6 +45,28 @@ public class MemberController {
 	@GetMapping("/signin")
 	public void signIn() {
 		log.debug("[GET] signIn()");
+	}
+	
+	@PostMapping("/signin")
+	public String signIn(MemberSignInDto dto, HttpSession session) {
+		log.debug("[POST] signIn(dto={})", dto);
+		
+		Member member = memberService.read(dto);
+		String targetPage = null;
+		if (member != null) {
+			// username과 password가 일치하는 사용자가 DB에 있는 경우 - 로그인 성공.
+			// 로그인 사용자 정보를 세션에 저장.
+			session.setAttribute("signedInUser", member.getUsername());
+			
+			// 로그인 성공 이후 이동할 페이지 설정.
+			targetPage = "/";
+		} else {
+			// username과 password가 일치하는 사용자가 DB에 없는 경우 - 로그인 실패.
+			// 로그인 실패인 경우 다시 로그인 페이지로 이동하도록 설정.
+			targetPage = "/user/signin?result=f";
+		}
+		
+		return "redirect:" + targetPage;
 	}
 	
 	// username 중복체크

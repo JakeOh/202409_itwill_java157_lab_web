@@ -19,5 +19,11 @@
         insert into members (username, password, email, created_time, modified_time)
         values (#{username}, #{password}, #{email}, systimestamp, systimestamp)
     </insert>
+    
+    <!-- 로그인에서 사용할 SQL -->
+    <select id="selectByUsernameAndPassword" resultType="Member">
+        select * from members
+        where username = #{username} and password = #{password}
+    </select>
 
 </mapper>

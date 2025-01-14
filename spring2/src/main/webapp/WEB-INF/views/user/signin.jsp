@@ -25,6 +25,9 @@
             <main>
                 <div class="mt-2 card card-body">
                     <form method="post">
+                        <c:if test="${not empty param.result and param.result eq 'f' }">
+                            <div class="text-danger">아이디와 비밀번호를 확인하세요.</div>
+                        </c:if>
                         <div class="mt-2">
                             <input type="text" class="form-control" 
                                 name="username" placeholder="아이디" required autofocus />

@@ -6,4 +6,5 @@ public interface MemberDao {
 	Member selectByUsername(String username);
 	Member selectByEmail(String email);
 	int insert(Member member);
+	Member selectByUsernameAndPassword(Member member);
 }

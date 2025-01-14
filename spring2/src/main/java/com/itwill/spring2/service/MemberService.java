@@ -3,6 +3,7 @@ package com.itwill.spring2.service;
 import org.springframework.stereotype.Service;
 
 import com.itwill.spring2.domain.Member;
+import com.itwill.spring2.dto.MemberSignInDto;
 import com.itwill.spring2.dto.MemberSignUpDto;
 import com.itwill.spring2.repository.MemberDao;
 
@@ -45,6 +46,14 @@ public class MemberService {
 		int result = memberDao.insert(dto.toEntity());
 		
 		return result;
+	}
+	
+	public Member read(MemberSignInDto dto) {
+		log.debug("read(dto={})", dto);
+		
+		Member member = memberDao.selectByUsernameAndPassword(dto.toEntity());
+		
+		return member;
 	}
 	
 }
