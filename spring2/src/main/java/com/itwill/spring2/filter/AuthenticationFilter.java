@@ -1,6 +1,7 @@
 package com.itwill.spring2.filter;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -61,7 +62,23 @@ public class AuthenticationFilter extends HttpFilter {
 		}
 		
 		log.debug("로그아웃 상태 ---> 로그인 페이지로 이동");
-		httpResp.sendRedirect("/spring2/user/signin");
+		// 로그인 이후에 최초 요청 주소로 이동(redirect)하기 위해서
+		String url = httpReq.getRequestURL().toString();
+		log.debug("[request url] {}", url);
+		
+		String qs = httpReq.getQueryString();
+		log.debug("[query string] {}", qs);
+		
+		String target = null; // 로그인 성공 후 이동할 주소
+		if (qs == null) {
+			target = URLEncoder.encode(url, "UTF-8");
+		} else {
+			target = URLEncoder.encode(url + "?" + qs, "UTF-8");
+		}
+		log.debug("[target] {}", target);
+		
+		String signInPage = httpReq.getContextPath() + "/user/signin?target=" + target;
+		httpResp.sendRedirect(signInPage);
 		
 	}
 
