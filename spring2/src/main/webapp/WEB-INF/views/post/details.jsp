@@ -58,13 +58,17 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <c:url var="postModifyPage" value="/post/modify">
-                            <c:param name="id" value="${post.id}" />
-                        </c:url>
-                        <a class="btn btn-outline-primary" 
-                            href="${postModifyPage}">수정하기</a>
-                    </div>
+                    
+                    <%-- 로그인 사용자와 포스트 작성자가 같은 경우에만 [수정하기] 버튼을 보여줌. --%>
+                    <c:if test="${signedInUser eq post.author}">
+                        <div class="card-footer d-flex justify-content-center">
+                            <c:url var="postModifyPage" value="/post/modify">
+                                <c:param name="id" value="${post.id}" />
+                            </c:url>
+                            <a class="btn btn-outline-primary" 
+                                href="${postModifyPage}">수정하기</a>
+                        </div>
+                    </c:if>
                 </div>
             </main>
             
@@ -80,7 +84,7 @@
                     <div class="mt-2 card card-body">
                         <div class="row">
                             <div class="col-10">
-                                <input class="d-none" id="username" value="guest" readonly />
+                                <input class="d-none" id="username" value="${signedInUser}" readonly />
                                 <textarea class="form-control" rows="3"
                                     id="ctext" placeholder="댓글 입력"></textarea>
                             </div>
@@ -130,6 +134,14 @@
         
         <!-- Axios Http JS -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        
+        <script>
+            // 세션에 저장된 로그인 사용자 아이디를 자바스크립트 변수에 저장.
+            // -> comments.js 파일의 코드들에서 그 변수를 사용할 수 있도록 하기 위해서.
+            // JSP 파일의 <script> 태그 안에서는 EL을 사용할 수 있음.
+            // (주의) JS 파일에서는 EL을 사용할 수 없음!
+            const signedInUser = '${signedInUser}';
+        </script>
         
         <c:url var="commentsJS" value="/js/comments.js" />
         <script src="${commentsJS}"></script>

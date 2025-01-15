@@ -118,14 +118,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${comment.ctext}
                     </div>
                 </div>
+            `;
+            
+            // 로그인 사용자와 댓글 작성자가 같은 경우에만 삭제/수정 버튼을 추가.
+            if (signedInUser === comment.username) {
+                html +=`
                 <div>
                     <button class="btnDeleteComment btn btn-outline-danger btn-sm"
                         data-id="${comment.id}">삭제</button>
                     <button class="btnUpdateComment btn btn-outline-primary btn-sm"
                         data-id="${comment.id}">수정</button>
                 </div>
-            </li>
-            `;
+                `;
+            }
+            html += '</li>';
         }
         html += '</ul>';
         

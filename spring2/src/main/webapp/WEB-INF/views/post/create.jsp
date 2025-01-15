@@ -38,8 +38,8 @@
                                     name="content" placeholder="내용" required></textarea>
                             </div>
                             <div class="mt-2">
-                                <input type="text" class="form-control"
-                                    name="author" placeholder="작성자" required />
+                                <input type="text" class="d-none"
+                                    name="author" value="${signedInUser}" />
                             </div>
                             <div class="mt-2">
                                 <input type="submit" value="작성완료"
