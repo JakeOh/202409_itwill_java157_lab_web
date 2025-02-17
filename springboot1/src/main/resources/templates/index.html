@@ -5,9 +5,11 @@
         <title>Spring Boot 1</title>
     </head>
     <body>
+        <!-- thymeleaf fragment expressions: -->
         <div th:replace="~{/layout/header :: myHeader}"></div>
     
         <h1>첫번째 스프링 부트 프로젝트</h1>
+        <!-- thymeleaf variable expressions -->
         <h2 th:text="${currentTime}">현재 시간</h2>
         <h3 th:text="${book}"></h3>
         
@@ -21,6 +23,7 @@
         </div>
         
         <div th:object="${book}">
+            <!-- thymeleaf selection expressions -->
             ID: <span th:text="*{id}"></span>
             <br>
             TITLE: <span th:text="*{title}"></span>
