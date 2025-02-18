@@ -61,5 +61,16 @@ public class HomeController {
 		// 뷰(html) 작성.
 		// -> 컨트롤러 메서드가 void인 경우 뷰의 이름은 요청 URL과 같음.
 	}
+	
+	@GetMapping("/book/details")
+	public void details(Integer id, Model model) {
+		// 이클립스 메뉴 > Window > Preferences > Java > Compiler 에서
+		// Store information about method parameter 항목이 체크되어 있으면
+		// @RequestParam 애너테이션을 생략할 수 있음.
+		log.info("details(id={})", id);
+		
+		Book book = Book.builder().id(id).title("무제").build();
+		model.addAttribute("book", book);
+	}
 
 }

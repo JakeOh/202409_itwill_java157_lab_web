@@ -50,7 +50,13 @@
             </li>
             <li>
                 <!-- thymeleaf link expressions에서 질의 문자열(query string)을 작성하는 방법 -->
+                <!-- <a href="/book/details?id=1">도서1 상세 페이지</a>  -->
                 <a th:href="@{/book/details(id=1)}">도서1 상세 페이지</a>
+            </li>
+            <li>
+                <!-- thymeleaf link expressions에서 경로 변수(path variable)을 작성하는 방법 -->
+                <!-- <a href="/book/details/2">도서2 상세 페이지</a> -->
+                <a th:href="@{/book/details/{id}(id=2)}">도서2 상세 페이지</a>
             </li>
         </ul>
         
