@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.itwill.springboot1.domain.Author;
 import com.itwill.springboot1.domain.Book;
@@ -71,6 +72,21 @@ public class HomeController {
 		
 		Book book = Book.builder().id(id).title("무제").build();
 		model.addAttribute("book", book);
+	}
+	
+	@GetMapping("/book/details/{id}")
+	public String bookDetails(@PathVariable Integer id, Model model) {
+		// 이클립스 메뉴 > Window > Preferences > Java > Compiler 에서
+		// Store information about method parameter 항목이 체크되어 있으면
+		// @PathVariable 애너테이션에서 name 속성을 생략할 수 있음.
+		// @PathVariable(name = "id")을 간단히 @PathVariable로 설정할 수 있음.
+		log.info("bookDetails(id={})", id);
+		
+		Book book = Book.builder().id(id).title("채식주의자").build();
+		model.addAttribute("book", book);
+		
+		return "book/details";
+		//-> 뷰 이름: src/main/resources/templates/book/details.html
 	}
 
 }
