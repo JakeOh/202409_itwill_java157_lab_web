@@ -42,8 +42,24 @@ public class HomeController {
 		ArrayList<Book> list = new ArrayList<>();
 		
 		// list에 Book 타입 객체를 5개 저장.
+		for (int i = 0; i < 5; i++) {
+			Author author = Author.builder()
+					.firstName("FirstName_" + i).lastName("LastName_" + i)
+					.build();
+			Book book = Book.builder()
+					.id(i).title("Title_" + i).author(author)
+					.build();
+			list.add(book);
+		}
+		
+		// author가 null인 book 객체를 리스트에 추가.
+		list.add(Book.builder().id(123).title("No Title").build());
+		
 		// list를 뷰에 전달.
+		model.addAttribute("bookList", list);
+		
 		// 뷰(html) 작성.
+		// -> 컨트롤러 메서드가 void인 경우 뷰의 이름은 요청 URL과 같음.
 	}
 
 }

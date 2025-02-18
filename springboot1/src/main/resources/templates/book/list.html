@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spring Boot 1</title>
+    </head>
+    <body>
+        <div th:replace="~{/layout/header :: myHeader('도서 목록 페이지')}"></div>
+        <div th:insert="~{/layout/header :: navigation}"></div>
+        
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>제목</th>
+                        <th>저자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="book : ${bookList}" th:object="${book}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{title}"></td>
+                        <td th:text="*{author != null} ? |*{author.firstName} *{author.lastName}| : 'NULL'"></td>
+                        <!-- (조건식) ? (참일 때 사용할 값) : (거짓일 때 사용할 값) -->
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </body>
+</html>
