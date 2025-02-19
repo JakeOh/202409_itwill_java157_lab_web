@@ -26,16 +26,19 @@ public class EmployeeRepositoryTest {
 		log.info("empRepo = {}", empRepo);
 	}
 	
-//	@Test
+	@Test
 	public void testFindAll() {
 		// findAll(): "select * from emp" SQL을 실행하는 메서드. 전체 검색.
 		List<Employee> list = empRepo.findAll();
 		assertThat(list.size()).isEqualTo(14);
 		
-		list.forEach(emp -> log.info("{}", emp));
+		list.forEach((emp) -> {
+			System.out.println(emp);
+			System.out.println(emp.getDepartment());
+		});
 	}
 	
-	@Test
+//	@Test
 	public void testFindById() {
 		// findById(): PK로 검색하는 메서드. "select * from emp where empno = ?" SQL을 실행하는 메서드.
 		// Optional<T>.orElseThrow(): 데이터가 있으면 T 타입의 객체를 리턴, 

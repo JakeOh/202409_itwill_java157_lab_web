@@ -4,7 +4,10 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -47,6 +50,9 @@ public class Employee {
 	@Column(name = "COMM")
 	private Double commission;
 	
-	private Integer deptno;
+	@ToString.Exclude  // toString 메서드를 작성할 때 출력에서 제외.
+	@ManyToOne(fetch = FetchType.EAGER)  // emp 테이블은 dept 테이블과 ManyToOne 관계(relation).
+	@JoinColumn(name = "DEPTNO")  // emp 테이블과 dept 테이블을 join하는 컬럼 이름.
+	private Department department;
 	
 }
