@@ -38,6 +38,9 @@ public class EmployeeController {
 	public String details(@PathVariable Integer id, Model model) {
 		log.info("details(id={})", id);
 		
+		Employee emp = empService.read(id);
+		model.addAttribute("employee", emp);
+		
 		return "emp/details";
 	}
 

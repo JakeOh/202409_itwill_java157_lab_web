@@ -29,4 +29,12 @@ public class EmployeeService {
 		return employees;
 	}
 	
+	public Employee read(Integer id) {
+		log.info("read(id={})", id);
+		
+		Employee emp = empRepo.findById(id).orElseThrow();
+		
+		return emp;
+	}
+	
 }

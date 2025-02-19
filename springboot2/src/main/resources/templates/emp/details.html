@@ -7,5 +7,44 @@
     <body>
         <div th:replace="~{/layout/fragments :: pageHeader('직원 상세 페이지')}"></div>
         
+        <main>
+            <table>
+                <tbody th:object="${employee}">
+                    <tr>
+                        <th>사번</th>
+                        <td th:text="*{id}"></td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td th:text="*{ename}"></td>
+                    </tr>
+                    <tr>
+                        <th>업무</th>
+                        <td th:text="*{job}"></td>
+                    </tr>
+                    <tr>
+                        <th>매니저</th>
+                        <td th:text="*{manager != null} ? *{manager.ename}"></td>
+                    </tr>
+                    <tr>
+                        <th>입사날짜</th>
+                        <td th:text="*{hiredate}"></td>
+                    </tr>
+                    <tr>
+                        <th>급여</th>
+                        <td th:text="*{salary}"></td>
+                    </tr>
+                    <tr>
+                        <th>수당</th>
+                        <td th:text="*{commission != null} ? *{commission} : '-'"></td>
+                    </tr>
+                    <tr>
+                        <th>부서</th>
+                        <td th:text="*{department.dname}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        
     </body>
 </html>
