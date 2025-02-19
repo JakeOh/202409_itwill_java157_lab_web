@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.itwill.springboot2.domain.Employee;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -27,6 +28,7 @@ public class EmployeeRepositoryTest {
 	}
 	
 	@Test
+	@Transactional
 	public void testFindAll() {
 		// findAll(): "select * from emp" SQL을 실행하는 메서드. 전체 검색.
 		List<Employee> list = empRepo.findAll();
