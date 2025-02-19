@@ -40,8 +40,13 @@ public class Employee {
 	private Integer manager;
 	
 	private LocalDate hiredate;
-	private Double sal;
-	private Double comm;
+	
+	@Column(name = "SAL")
+	private Double salary;
+	
+	@Column(name = "COMM")
+	private Double commission;
+	
 	private Integer deptno;
 	
 }

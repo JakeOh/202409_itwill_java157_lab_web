@@ -38,9 +38,22 @@ public class EmployeeRepositoryTest {
 	@Test
 	public void testFindById() {
 		// findById(): PK로 검색하는 메서드. "select * from emp where empno = ?" SQL을 실행하는 메서드.
+		// Optional<T>.orElseThrow(): 데이터가 있으면 T 타입의 객체를 리턴, 
+		// 데이터가 없으면 예외(Exception)를 발생시킴.
 		Employee emp = empRepo.findById(7788).orElseThrow();
 		assertThat(emp.getEname()).isEqualTo("SCOTT");
 		log.info("{}", emp);
+		
+		// Optional<T>.orElse(T other): 데이터가 있으면 T 타입의 객체를 리턴,
+		// 데이터가 없으면 아규먼트로 전달된 other 객체를 리턴.
+		Employee emp2 = empRepo.findById(1000).orElse(null);
+		assertThat(emp2).isNull();
+		log.info("emp2 = {}", emp2);
+		
+		// Optional<T>.orElseGet(Supplier fn): 데이터가 있으면 T 타입의 객체를 리턴,
+		// 데이터가 없으면 람다 표현식 fn에서 리턴하는 객체를 리턴.
+		Employee emp3 = empRepo.findById(1000).orElseGet(() -> null);
+		assertThat(emp3).isNull();
 	}
 	
 }
