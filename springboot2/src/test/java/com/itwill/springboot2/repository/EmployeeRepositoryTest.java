@@ -27,7 +27,7 @@ public class EmployeeRepositoryTest {
 		log.info("empRepo = {}", empRepo);
 	}
 	
-	@Test
+//	@Test
 	@Transactional
 	public void testFindAll() {
 		// findAll(): "select * from emp" SQL을 실행하는 메서드. 전체 검색.
@@ -36,18 +36,22 @@ public class EmployeeRepositoryTest {
 		
 		list.forEach((emp) -> {
 			System.out.println(emp);
-			System.out.println(emp.getDepartment());
+			System.out.println("dept = " + emp.getDepartment());
+			System.out.println("mgr = " + emp.getManager());
 		});
 	}
 	
-//	@Test
+	@Test
+	@Transactional
 	public void testFindById() {
 		// findById(): PK로 검색하는 메서드. "select * from emp where empno = ?" SQL을 실행하는 메서드.
 		// Optional<T>.orElseThrow(): 데이터가 있으면 T 타입의 객체를 리턴, 
 		// 데이터가 없으면 예외(Exception)를 발생시킴.
 		Employee emp = empRepo.findById(7788).orElseThrow();
 		assertThat(emp.getEname()).isEqualTo("SCOTT");
-		log.info("{}", emp);
+		log.info("emp = {}", emp);
+		log.info("dept = {}", emp.getDepartment());
+		log.info("mgr = {}", emp.getManager());
 		
 		// Optional<T>.orElse(T other): 데이터가 있으면 T 타입의 객체를 리턴,
 		// 데이터가 없으면 아규먼트로 전달된 other 객체를 리턴.

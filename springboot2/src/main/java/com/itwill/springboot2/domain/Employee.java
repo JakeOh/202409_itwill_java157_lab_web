@@ -39,8 +39,10 @@ public class Employee {
 	private String ename;
 	private String job;
 	
-	@Column(name = "MGR")
-	private Integer manager;
+	@ToString.Exclude
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MGR")
+	private Employee manager;
 	
 	private LocalDate hiredate;
 	
