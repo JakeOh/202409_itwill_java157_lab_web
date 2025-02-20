@@ -41,7 +41,7 @@ public class EmployeeRepositoryTest {
 		log.info("index 0 : {}", list.get(0));
 	}
 	
-	@Test
+//	@Test
 	@Transactional
 	public void testFindById() {
 		Employee emp = empRepo.findById(101).orElseThrow();
@@ -57,6 +57,19 @@ public class EmployeeRepositoryTest {
 				emp.getDepartment().getLocation().getCountry());
 		log.info("emp.department.location.country.region = {}",
 				emp.getDepartment().getLocation().getCountry().getRegion());
+	}
+	
+	@Test
+	@Transactional
+	public void testJpaQueryMethods() {
+		List<Employee> list;
+//		list = empRepo.findByDepartmentId(100);
+//		list = empRepo.findByFirstName("David");
+//		list = empRepo.findByFirstNameIgnoreCase("david");
+//		list = empRepo.findByFirstNameContaining("da");
+		list = empRepo.findByFirstNameLike("%da%");
+		
+		list.forEach(System.out::println);
 	}
 	
 }
