@@ -51,6 +51,7 @@ public class EmployeeRepositoryTest {
 		log.info("emp.job = {}", emp.getJob());
 		log.info("emp.manager = {}", emp.getManager());
 		log.info("emp.department = {}", emp.getDepartment());
+		log.info("emp.department.manager = {}", emp.getDepartment().getManager());
 	}
 	
 }
