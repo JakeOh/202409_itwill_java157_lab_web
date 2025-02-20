@@ -52,6 +52,11 @@ public class EmployeeRepositoryTest {
 		log.info("emp.manager = {}", emp.getManager());
 		log.info("emp.department = {}", emp.getDepartment());
 		log.info("emp.department.manager = {}", emp.getDepartment().getManager());
+		log.info("emp.department.location = {}", emp.getDepartment().getLocation());
+		log.info("emp.department.location.country = {}",
+				emp.getDepartment().getLocation().getCountry());
+		log.info("emp.department.location.country.region = {}",
+				emp.getDepartment().getLocation().getCountry().getRegion());
 	}
 	
 }
