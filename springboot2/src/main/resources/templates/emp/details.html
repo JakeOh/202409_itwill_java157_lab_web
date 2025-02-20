@@ -24,7 +24,12 @@
                     </tr>
                     <tr>
                         <th>매니저</th>
-                        <td th:text="*{manager != null} ? *{manager.ename}"></td>
+                        <td>
+                            <th:block th:if="*{manager != null}">
+                                <a th:href="@{/emp/details/{id}(id=*{manager.id})}"
+                                    th:text="*{manager.ename}"></a>
+                            </th:block>
+                        </td>
                     </tr>
                     <tr>
                         <th>입사날짜</th>
@@ -40,7 +45,12 @@
                     </tr>
                     <tr>
                         <th>부서</th>
-                        <td th:text="*{department.dname}"></td>
+                        <td>
+                            <th:block th:if="*{department != null}">
+                                <a th:href="@{/dept/details/{id}(id=*{department.id})}"
+                                    th:text="*{department.dname}"></a>
+                            </th:block>
+                        </td>
                     </tr>
                 </tbody>
             </table>

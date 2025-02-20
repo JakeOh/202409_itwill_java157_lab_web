@@ -28,7 +28,7 @@ public class Department {
 	private String dname;
 	
 	@Column(name = "LOC")
-	private String locaion;
+	private String location;
 	
 	@ToString.Exclude
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
