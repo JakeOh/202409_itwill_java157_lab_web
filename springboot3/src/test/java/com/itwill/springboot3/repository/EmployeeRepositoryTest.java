@@ -64,6 +64,8 @@ public class EmployeeRepositoryTest {
 	@Transactional
 	public void testJpaQueryMethods() {
 		List<Employee> list;
+		
+		// JPA Query Methods 테스트
 //		list = empRepo.findByDepartmentId(100);
 //		list = empRepo.findByFirstName("David");
 //		list = empRepo.findByFirstNameIgnoreCase("david");
@@ -82,7 +84,11 @@ public class EmployeeRepositoryTest {
 //				LocalDate.of(2007, 12, 31));
 //		list = empRepo.findByDepartmentDepartmentName("Sales");
 //		list = empRepo.findByDepartmentLocationCity("Seattle");
-		list = empRepo.findByDepartmentLocationCountryId("CA");
+//		list = empRepo.findByDepartmentLocationCountryId("CA");
+		
+		// JPQL 테스트
+//		list = empRepo.findByName("da", "ad");
+		list = empRepo.findByName("da");
 		
 		list.forEach(System.out::println);
 	}

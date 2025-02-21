@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.itwill.springboot3.domain.Employee;
 
@@ -68,4 +70,22 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	
 	// 근무 국가 아이디로 직원 검색.
 	List<Employee> findByDepartmentLocationCountryId(String city);
+	
+	
+	// JPQL(Java Persistence Query Language)
+	// JPA에서 사용하는 "객체 지향(object-oriented)" 쿼리 문법.
+	// 테이블 이름과 컬럼 이름을 사용해서 쿼리 문장을 작성하는 것이 아니라,
+	// 엔터티 클래스 이름과 엔터티 필드 이름을 사용해서 쿼리를 작성하는 문법.
+	// alias(별명)을 반드시 사용해야 함.
+	// 엔터티 이름, 필드 이름들은 대소문자를 구분.
+	
+	@Query("select e from Employee e "
+			+ "where upper(e.firstName) like upper('%' || ?1 || '%') "
+			+ "or upper(e.lastName) like upper('%' || ?2 || '%')")
+	List<Employee> findByName(String firstName, String lastName);
+	
+	@Query("select e from Employee e "
+			+ "where upper(e.firstName) like upper('%' || :keyword || '%') "
+			+ "or upper(e.lastName) like upper('%' || :keyword || '%')")
+	List<Employee> findByName(@Param("keyword") String name);
 }
