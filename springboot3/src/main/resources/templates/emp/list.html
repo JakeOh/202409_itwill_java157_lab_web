@@ -17,11 +17,22 @@
                 </thead>
                 <tbody>
                     <tr th:each="emp : ${employees}" th:object="${emp}">
-                        <td th:text="*{id}"></td>
-                        <td th:text="|*{firstName} *{lastName}|"></td>
+                        <td>
+                            <a th:href="@{/emp/details/{id}(id=*{id})}"
+                                th:text="*{id}"></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/emp/details/{id}(id=*{id})}" 
+                                th:text="|*{firstName} *{lastName}|"></a>
+                        </td>
                         <td th:text="*{email}"></td>
                         <td th:text="*{phoneNumber}"></td>
-                        <td th:text="*{department != null} ? *{department.departmentName}"></td>
+                        <td>
+                            <th:block th:if="*{department != null}" >
+                                <a th:href="@{/dept/details/{id}(id=*{department.id})}" 
+                                    th:text="*{department.departmentName}"></a>
+                            </th:block>
+                        </td>
                     </tr>
                 </tbody>
             </table>
