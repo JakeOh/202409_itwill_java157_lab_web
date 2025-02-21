@@ -2,6 +2,7 @@ package com.itwill.springboot3.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -67,7 +68,21 @@ public class EmployeeRepositoryTest {
 //		list = empRepo.findByFirstName("David");
 //		list = empRepo.findByFirstNameIgnoreCase("david");
 //		list = empRepo.findByFirstNameContaining("da");
-		list = empRepo.findByFirstNameLike("%da%");
+//		list = empRepo.findByFirstNameLike("%da%");
+//		list = empRepo.findByFirstNameContainingIgnoreCase("da");
+//		list = empRepo.findByFirstNameContainingIgnoreCaseOrderByFirstNameDesc("da");
+//		list = empRepo.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase("da", "ad");
+//		list = empRepo.findBySalaryGreaterThan(10_000);
+//		list = empRepo.findBySalaryLessThan(5_000);
+//		list = empRepo.findBySalaryBetween(2_000, 3_000);
+//		list = empRepo.findByHireDateLessThan(LocalDate.of(2003, 1, 1));
+//		list = empRepo.findByHireDateGreaterThan(LocalDate.of(2007, 1, 1));
+//		list = empRepo.findByHireDateBetween(
+//				LocalDate.of(2007, 1, 1), 
+//				LocalDate.of(2007, 12, 31));
+//		list = empRepo.findByDepartmentDepartmentName("Sales");
+//		list = empRepo.findByDepartmentLocationCity("Seattle");
+		list = empRepo.findByDepartmentLocationCountryId("CA");
 		
 		list.forEach(System.out::println);
 	}
