@@ -88,4 +88,20 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 			+ "where upper(e.firstName) like upper('%' || :keyword || '%') "
 			+ "or upper(e.lastName) like upper('%' || :keyword || '%')")
 	List<Employee> findByName(@Param("keyword") String name);
+	
+	@Query("select e from Employee e "
+			+ "where e.department.departmentName = :dname")
+	List<Employee> findByDeptName(@Param("dname") String deptName);
+	
+	// 특정 도시 (이름)에 근무하는 직원들 검색
+	@Query("select e from Employee e "
+			+ "where e.department.location.city = :city")
+	// 메서드 파라미터 이름과 쿼리의 바인딩 파라미터 이름이 같은 경우에는 @Param 생략 가능.
+	List<Employee> findByCity(String city);
+	
+	// 특정 국가 (이름)에 근무하는 직원들 검색
+	@Query("select e from Employee e "
+			+ "where e.department.location.country.countryName = :country")
+	List<Employee> findByCountry(String country);
+	
 }

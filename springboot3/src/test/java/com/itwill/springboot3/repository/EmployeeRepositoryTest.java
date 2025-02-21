@@ -88,7 +88,10 @@ public class EmployeeRepositoryTest {
 		
 		// JPQL 테스트
 //		list = empRepo.findByName("da", "ad");
-		list = empRepo.findByName("da");
+//		list = empRepo.findByName("da");
+//		list = empRepo.findByDeptName("IT");
+//		list = empRepo.findByCity("Seattle");
+		list = empRepo.findByCountry("Canada");
 		
 		list.forEach(System.out::println);
 	}
