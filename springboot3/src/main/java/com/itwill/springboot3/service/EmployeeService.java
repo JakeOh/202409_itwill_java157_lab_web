@@ -33,7 +33,7 @@ public class EmployeeService {
 		Page<Employee> page = empRepo.findAll(pageable);
 		log.info("previous = {}", page.hasPrevious());  // 이전 페이지가 있는 지 여부
 		log.info("next = {}", page.hasNext());  // 다음 페이지가 있는 지 여부
-		log.info("number = {}", page.getNumber());  // 현재 페이지(슬라이스) 번호
+		log.info("number = {}", page.getNumber());  // 현재 페이지(슬라이스) 번호(0부터 시작)
 		log.info("total pages = {}", page.getTotalPages());  // 전체 페이지 수
 		
 		return page;
