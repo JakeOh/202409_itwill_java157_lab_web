@@ -23,6 +23,7 @@ public class PostListItemDto {
 	private String author;
 	private LocalDateTime modifiedTime;
 	
+	// Post 엔터티를 PostListItemDto 타입 객체로 변환 리턴.
 	public static PostListItemDto fromEntity(Post entity) {
 		
 		return PostListItemDto.builder()
