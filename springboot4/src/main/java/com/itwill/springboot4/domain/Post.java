@@ -43,4 +43,14 @@ public class Post extends BaseTimeEntity {
 	@Basic(optional = false)
 	private String author;
 	
+	// 포스트 수정에서 사용할 메서드 - 제목과 내용만 수정.
+	public Post update(String title, String content) {
+		// title과 content는 null되면 안됨.
+		
+		this.title = title;
+		this.content = content;
+		
+		return this;
+	}
+	
 }
