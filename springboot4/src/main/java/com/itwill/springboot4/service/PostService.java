@@ -54,5 +54,12 @@ public class PostService {
 		
 		return postRepo.findById(id).orElseThrow();
 	}
+	
+	@Transactional
+	public void delete(Long id) {
+		log.info("delete(id={})", id);
+		
+		postRepo.deleteById(id);
+	}
 
 }
