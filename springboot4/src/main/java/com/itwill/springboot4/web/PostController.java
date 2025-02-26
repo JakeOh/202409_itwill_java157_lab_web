@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwill.springboot4.domain.Post;
 import com.itwill.springboot4.dto.PostCreateDto;
 import com.itwill.springboot4.dto.PostListItemDto;
+import com.itwill.springboot4.dto.PostSearchDto;
 import com.itwill.springboot4.dto.PostUpdateDto;
 import com.itwill.springboot4.service.PostService;
 
@@ -83,6 +84,16 @@ public class PostController {
 		
 		// 상세보기 페이지로 이동(redirect)
 		return "redirect:/post/details?id=" + dto.getId();
+	}
+	
+	@GetMapping("/search")
+	public String search(PostSearchDto dto, Model model) {
+		log.info("search(dto={})", dto);
+		
+		Page<PostListItemDto> page = postService.search(dto, Sort.by("id").descending());
+		model.addAttribute("page", page);
+		
+		return "post/list";
 	}
 
 }
