@@ -22,7 +22,7 @@
                             <tr th:each="post : ${page}" th:object="${post}">
                                 <td th:text="*{id}"></td>
                                 <td>
-                                    <a th:href="@{/post/details/{id}(id=*{id})}"
+                                    <a th:href="@{/post/details(id=*{id})}"
                                         th:text="*{title}"></a>
                                 </td>
                                 <td>
