@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.springboot4.domain.Post;
 import com.itwill.springboot4.dto.PostCreateDto;
 import com.itwill.springboot4.dto.PostListItemDto;
 import com.itwill.springboot4.service.PostService;
@@ -55,7 +56,9 @@ public class PostController {
 	public String details(@PathVariable Long id, Model model) {
 		log.info("details(id={})", id);
 		
-		// TODO: 서비스 메서드 호출. 아이디로 검색.
+		// 서비스 메서드 호출. 아이디로 검색.
+		Post entity = postService.read(id);
+		model.addAttribute("post", entity);
 		
 		return "post/details";
 	}
