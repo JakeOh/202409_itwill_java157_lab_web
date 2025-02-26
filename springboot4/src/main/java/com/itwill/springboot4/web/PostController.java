@@ -34,8 +34,10 @@ public class PostController {
 		
 		// id 필드의 내림차순으로 정렬된 페이지 데이터를 가져옴.
 		Page<PostListItemDto> page = postService.read(pageNo, Sort.by("id").descending());
-		
 		model.addAttribute("page", page);
+		
+		// pagination 프래그먼트의 링크(버튼)의 요청 주소로 사용할 문자열을 모델 속성으로 저장.
+		model.addAttribute("baseUrl", "/post/list");
 	}
 	
 	@GetMapping("/create")
@@ -92,6 +94,9 @@ public class PostController {
 		
 		Page<PostListItemDto> page = postService.search(dto, Sort.by("id").descending());
 		model.addAttribute("page", page);
+		
+		// pagination 프래그먼트의 링크(버튼)의 요청 주소로 사용할 문자열을 모델 속성으로 저장.
+		model.addAttribute("baseUrl", "/post/search");
 		
 		return "post/list";
 	}

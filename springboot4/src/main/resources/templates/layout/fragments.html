@@ -45,17 +45,17 @@
                         th:classappend="${!page.hasPrevious} ? 'disabled'">
                         <!-- 이전 페이지가 없을 때 'disabled' 클래스 속성을 추가 -->
                         
-                        <a class="page-link" th:href="@{|?p=${page.number - 1}|}">이전</a>
+                        <a class="page-link" th:href="@{${baseUrl}(p=${page.number - 1}, category=${param.category}, keyword=${param.keyword})}">이전</a>
                         <!-- (현재 페이지 번호 - 1) 페이지로 이동 -->
                     </li>
                     <li class="page-item"
-                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}"
+                        th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1, 1)}"
                         th:if="${pageNo >= page.number - 5 && pageNo < page.number + 5}"
                         th:classappend="${pageNo == page.number} ? 'active'">
                         <!-- pageNo 값이 현재 페이지 번호와 같으면 'active' 클래스 속성 추가 -->
                         
                         <a class="page-link" 
-                            th:href="@{|?p=${pageNo}|}"
+                            th:href="@{${baseUrl}(p=${pageNo}, category=${param.category}, keyword=${param.keyword})}"
                             th:text="${pageNo + 1}"></a>
                     </li>
                     <li class="page-item"
@@ -63,7 +63,7 @@
                         <!-- 다음 페이지가 없는 경우 'disabled' 클래스 속성을 추가 -->
                         
                         <a class="page-link" 
-                            th:href="@{|?p=${page.number + 1}|}">다음</a>
+                            th:href="@{${baseUrl}(p=${page.number + 1}, category=${param.category}, keyword=${param.keyword})}">다음</a>
                         <!-- (현재 페이지 + 1) 페이지로 이동 -->
                     </li>
                 </ul>
