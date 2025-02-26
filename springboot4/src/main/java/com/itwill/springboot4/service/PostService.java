@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.springboot4.domain.Post;
+import com.itwill.springboot4.dto.PostCreateDto;
 import com.itwill.springboot4.dto.PostListItemDto;
 import com.itwill.springboot4.repository.PostRepository;
 
@@ -33,6 +34,18 @@ public class PostService {
 		Page<PostListItemDto> page = list.map(PostListItemDto::fromEntity);
 		
 		return page;
+	}
+	
+	@Transactional
+	public Long create(PostCreateDto dto) {
+		log.info("create(dto={})", dto);
+		
+		// DTO를 엔터티로 변환하고 저장(insert query 실행).
+		Post entity = postRepo.save(dto.toEntity());
+		log.info("저장된 엔터티 = {}", entity);
+		
+		// 저장된 엔터티의 PK(id)를 리턴.
+		return entity.getId();
 	}
 
 }

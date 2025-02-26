@@ -5,9 +5,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.springboot4.dto.PostCreateDto;
 import com.itwill.springboot4.dto.PostListItemDto;
 import com.itwill.springboot4.service.PostService;
 
@@ -30,6 +32,22 @@ public class PostController {
 		Page<PostListItemDto> page = postService.read(pageNo, Sort.by("id").descending());
 		
 		model.addAttribute("page", page);
+	}
+	
+	@GetMapping("/create")
+	public void create() {
+		log.info("GET create()");
+	}
+	
+	@PostMapping("/create")
+	public String create(PostCreateDto dto) {
+		log.info("POST create(dto={})", dto);
+		
+		Long id = postService.create(dto);
+		log.info("저장된 엔터티 id = {}", id);
+		
+		// 포스트 목록 페이지로 이동(redirect)
+		return "redirect:/post/list";
 	}
 
 }
