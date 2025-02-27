@@ -25,7 +25,7 @@ public class CommentController {
 	private final CommentService commentService;
 	
 	@GetMapping("/all/{postId}")
-	public ResponseEntity<Page<Comment>> getCommentList(@PathVariable Long postId,
+	public ResponseEntity<PagedModel<Comment>> getCommentList(@PathVariable Long postId,
 			@RequestParam(name = "p", defaultValue = "0") int pageNo) {
 		log.info("getCommentList(postId={}, pageNo={})", postId, pageNo);
 		
@@ -36,7 +36,8 @@ public class CommentController {
 		log.info("페이지 번호 = {}", page.getNumber());
 		log.info("현재 페이지의 댓글 개수 = {}", page.getNumberOfElements());
 		
-		return ResponseEntity.ok(page);
+		return ResponseEntity.ok(new PagedModel<>(page));
+		// JSON 직렬화의 안정성을 위해서 Page<T> 객체 대신에 PagedModel<T>을 클라이언트로 응답을 보냄.
 	}
 
 }
