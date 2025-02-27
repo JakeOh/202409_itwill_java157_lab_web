@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 
 import com.itwill.springboot4.domain.Comment;
 import com.itwill.springboot4.dto.CommentRegisterDto;
+import com.itwill.springboot4.dto.CommentUpdateDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,10 +48,24 @@ public class CommentServiceTest {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testReadByPostId() {
 		Page<Comment> page = commentService.read(57L, 2, Sort.by("id").descending());
 		page.forEach(System.out::println);
+	}
+	
+//	@Test
+	public void testDelete() {
+		commentService.delete(30L);
+	}
+	
+	@Test
+	public void testUpdate() {
+		CommentUpdateDto dto = new CommentUpdateDto();
+		dto.setId(32L);
+		dto.setText("JPA를 사용한 댓글 업데이트 서비스");
+		
+		commentService.update(dto);
 	}
 
 }

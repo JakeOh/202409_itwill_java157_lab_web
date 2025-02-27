@@ -43,4 +43,10 @@ public class Comment extends BaseTimeEntity {
 	@Basic(optional = false)
 	private String writer;
 
+	public Comment update(String text) {
+		this.text = text;
+		
+		return this;
+	}
+	
 }
