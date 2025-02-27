@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 
 import com.itwill.springboot4.domain.Comment;
 import com.itwill.springboot4.dto.CommentRegisterDto;
@@ -43,6 +45,12 @@ public class CommentServiceTest {
 			Comment entity = commentService.create(dto);
 			assertThat(entity).isNotNull();
 		}
+	}
+	
+	@Test
+	public void testReadByPostId() {
+		Page<Comment> page = commentService.read(57L, 2, Sort.by("id").descending());
+		page.forEach(System.out::println);
 	}
 
 }
