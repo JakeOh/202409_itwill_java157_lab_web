@@ -94,11 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="mt-2">
                     <div class="mt-2">
-                        <textarea class="form-control">${comment.text}</textarea>
+                        <textarea class="commentText form-control" 
+                            data-id="${comment.id}">${comment.text}</textarea>
                     </div>
                     <div class="mt-2">
-                        <button class="btn btn-outline-danger">삭제</button>
-                        <button class="btn btn-outline-primary">수정</button>
+                        <button class="btnDelete btn btn-sm btn-outline-danger"
+                            data-id="${comment.id}">삭제</button>
+                        <button class="btnUpdate btn btn-sm btn-outline-primary"
+                            data-id="${comment.id}">수정</button>
                     </div>
                 </div>
             </div>
@@ -112,6 +115,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // 댓글 목록의 첫번째 페이지가 아니면, 기존 내용 밑에 댓글 목록을 추가.
             divComments.innerHTML += htmlStr;
         }
+        
+        // 댓글 [삭제], [수정] 버튼을 찾고, 클릭 이벤트 리스너를 설정.
+        const btnDeletes = document.querySelectorAll('button.btnDelete');
+        /*
+        for (const btn of btnDeletes) {
+            btn.addEventListener('click', deleteComment);
+        }
+        */
+        btnDeletes.forEach((btn) => btn.addEventListener('click', deleteComment));
+        
+        const btnUpdates = document.querySelectorAll('button.btnUpdate');
+        btnUpdates.forEach((btn) => btn.addEventListener('click', updateComment));
     }
     
     // 댓글 등록 함수
@@ -148,6 +163,32 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(error);
         }
         
+    }
+    
+    // 댓글 삭제 요청 처리 함수
+    async function deleteComment(event) {
+//        console.log(event.target);
+        const check = confirm('정말 삭제할까요?');
+        if (!check) {
+            return;
+        }
+        
+        const id = event.target.getAttribute('data-id');
+        const uri = `/api/comment/${id}`;
+        try {
+            const response = await axios.delete(uri);
+            console.log(`deleted comment id = ${response.data}`);
+            alert('댓글이 삭제됐습니다.');
+            getAllComments(0);
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    
+    // 댓글 수정 요청 처리 함수
+    function updateComment(event) {
+        console.log(event.target);
     }
     
 });
