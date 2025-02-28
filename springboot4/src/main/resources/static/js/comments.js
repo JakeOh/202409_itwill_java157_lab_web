@@ -187,8 +187,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // 댓글 수정 요청 처리 함수
-    function updateComment(event) {
-        console.log(event.target);
+    async function updateComment(event) {
+//        console.log(event.target);
+        const id = event.target.getAttribute('data-id'); // 댓글 아이디
+        const uri = `/api/comment/${id}`; // Ajax 요청 주소
+        
+        const textarea = document.querySelector(`textarea.commentText[data-id="${id}"]`);
+//        console.log(textarea);
+        const text = textarea.value; // 댓글 내용
+        if (text.trim() === '') {
+            alert('댓글 내용은 반드시 입력해야 합니다.');
+            return;
+        }
+        
+        const check = confirm('변경된 내용을 저장할까요?');
+        if (!check) {
+            return;
+        }
+        
+        try {
+            const response = await axios.put(uri, { id, text });
+            console.log(`updated comment id = ${response.data}`);
+            alert('댓글 업데이트 성공');
+            getAllComments(0);
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
     
 });
