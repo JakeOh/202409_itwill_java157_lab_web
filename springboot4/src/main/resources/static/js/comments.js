@@ -31,6 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnMore = document.querySelector('button#btnMore');
     btnMore.addEventListener('click', () => getAllComments(currentPageNo + 1));
     
+    // 댓글 [등록] 버튼에 클릭 이벤트 리스너를 설정
+    const btnRegisterComment = document.querySelector('button#btnRegisterComment');
+    btnRegisterComment.addEventListener('click', registerComment);
+    
     
     /* ---------- 함수 선언 ---------- */
     // 파라미터 pageNo에 전달된 페이지의 댓글 목록 가져오기.
@@ -84,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const comment of content) {
             htmlStr += `
             <div class="mt-2 card card-body">
-                <div class="mt-2">
+                <div class="mt-2" style="font-size: 0.5em">
                     <span class="fw-bold">${comment.writer}<span>
-                    <span class="text-secondary">${comment.modifiedTime}</span>
+                    <span class="fw-light text-secondary">${comment.modifiedTime}</span>
                 </div>
                 <div class="mt-2">
                     <div class="mt-2">
@@ -108,6 +112,42 @@ document.addEventListener('DOMContentLoaded', () => {
             // 댓글 목록의 첫번째 페이지가 아니면, 기존 내용 밑에 댓글 목록을 추가.
             divComments.innerHTML += htmlStr;
         }
+    }
+    
+    // 댓글 등록 함수
+    async function registerComment() {
+        // 댓글이 등록될 포스트 아이디
+        const postId = document.querySelector('input#id').value;
+        
+        // 댓글 내용
+        const text = document.querySelector('textarea#commentText').value;
+        
+        // 댓글 작성자
+        const writer = document.querySelector('input#commentWriter').value;
+        
+        if (text.trim() === '') {
+            alert('댓글 내용은 반드시 입력해야 합니다.');
+            return;
+        }
+        
+        // Ajax 요청에서 Request Body에 포함시켜서 전송할 데이터
+        const reqBody = { postId, text, writer };
+        
+        // Ajax 요청을 보내고, 응답/에러 처리
+        try {
+            const { data } = await axios.post('/api/comment', reqBody);
+            console.log(data);
+            
+            // 댓글 입력 textarea의 내용을 지움.
+            document.querySelector('textarea#commentText').value = '';
+            
+            // 댓글 목록을 다시 그림.
+            getAllComments(0);
+            
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
     
 });
