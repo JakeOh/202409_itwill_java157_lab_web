@@ -46,7 +46,7 @@ public class CommentController {
 		// JSON 직렬화의 안정성을 위해서 Page<T> 객체 대신에 PagedModel<T>을 클라이언트로 응답을 보냄.
 	}
 	
-	@PostMapping()
+	@PostMapping
 	public ResponseEntity<Comment> registerComment(@RequestBody CommentRegisterDto dto) {
 		log.info("registerComment(dto={})", dto);
 		
