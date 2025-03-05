@@ -80,14 +80,16 @@ public class SecurityConfig {
 			// 모든 요청 주소에 대해서 "USER" 권한을 가진 사용자의 아이디/비밀번호 인증을 하는 경우:
 			// auth.anyRequest().hasRole("USER")
 		
+			// 로그인이 필요한 페이지와 필요하지 않은 페이지를 구분해서 설정 구성:
 			auth
-			.requestMatchers("/post/create")
+			.requestMatchers("/post/create", "/post/details", "/post/modify",
+					"/post/delete", "/post/update", "/api/comment/**")
 			.hasRole("USER")
 			.anyRequest()
 			.permitAll()
 		);
 		
-		return http.build();
+		return http.build(); // DefaultSecurityFilterChain을 생성해서 리턴.
 	}
 
 }
