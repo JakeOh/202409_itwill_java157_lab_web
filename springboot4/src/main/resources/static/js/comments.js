@@ -80,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     */
     function makeCommentElements({ content, page }) {
+        // 로그인 사용자 아이디 -> 댓글 삭제/수정 버튼을 만들 지 여부를 결정하기 위해서.
+        const authUser = document.querySelector('span#authenticatedUser').innerText;
+        
         // 댓글 목록을 추가할 div 요소
         const divComments = document.querySelector('div#divComments');
         
@@ -97,15 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         <textarea class="commentText form-control" 
                             data-id="${comment.id}">${comment.text}</textarea>
                     </div>
+            `;
+            // 로그인 사용자와 댓글 작성자가 같으면 버튼을 보여줌.
+            if (authUser === comment.writer) {
+                htmlStr += `
                     <div class="mt-2">
                         <button class="btnDelete btn btn-sm btn-outline-danger"
                             data-id="${comment.id}">삭제</button>
                         <button class="btnUpdate btn btn-sm btn-outline-primary"
                             data-id="${comment.id}">수정</button>
                     </div>
+                `;
+            }
+            htmlStr += `        
                 </div>
             </div>
             `;
+            
         }
         
         if (currentPageNo === 0) {
