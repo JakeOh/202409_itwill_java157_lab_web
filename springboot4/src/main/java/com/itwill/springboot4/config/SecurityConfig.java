@@ -2,15 +2,15 @@ package com.itwill.springboot4.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+//import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +43,7 @@ public class SecurityConfig {
 	 * (2) UserDetails 인터페이스를 구현하는 엔터티 클래스가 있어야 함.
 	 * 사용자(User) 엔터티, 리포지토리와 사용자 서비스를 구현하기 전에 테스트 용도로 사용할 코드.
 	 */
+	/*
 	@Bean
 	UserDetailsService inMemoryUserDetailsService() {
 		log.info("InMemoryUserDetailsManager 생성");
@@ -64,6 +65,7 @@ public class SecurityConfig {
 		// User 타입 객체 3개를 메모리에서만 관리하는 사용자 상세정보 매니저 객체를 생성하고 리턴.
 		return new InMemoryUserDetailsManager(user1, user2, user3);
 	}
+	*/
 	
 	/*
 	 * SecurityFilterChain: 스프링 시큐리티 필터 체인 객체(bean)
