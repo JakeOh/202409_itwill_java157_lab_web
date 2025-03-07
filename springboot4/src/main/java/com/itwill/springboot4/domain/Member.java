@@ -28,7 +28,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 @NoArgsConstructor
@@ -87,6 +89,8 @@ public class Member extends BaseTimeEntity implements UserDetails {
 	// 사용자의 권한 여부를 체크하기 때문에.
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		log.info("getAuthorities()");
+		
 //		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 //		for (MemberRole r : roles) {
 //			SimpleGrantedAuthority auth = new SimpleGrantedAuthority(r.getAuthority());
