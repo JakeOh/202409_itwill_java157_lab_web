@@ -3,7 +3,11 @@ package com.itwill.springboot4.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.itwill.springboot4.domain.Post;
+import com.itwill.springboot4.dto.PostSearchDto;
 
 public interface PostQuerydsl {
 	
@@ -16,4 +20,10 @@ public interface PostQuerydsl {
 	// 수정시간이 start와 end 사이인 포스트 목록 검색, 수정시간 내림차순 정렬.
 	List<Post> searchByModifiedTime(LocalDateTime start, LocalDateTime end);
 
+	// Dynamic query(동적 쿼리)
+	List<Post> searchByCategoryAndKeyword(PostSearchDto dto);
+	
+	// Page<T> 객체를 리턴하는 Querydsl
+	Page<Post> searchByKeyword(PostSearchDto dto, Pageable pageable);
+	
 }
