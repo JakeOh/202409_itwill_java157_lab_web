@@ -69,7 +69,7 @@ public class PostRepositoryTest {
 	}
 	
 	// 더미 데이터 생성
-	@Test
+//	@Test
 	public void makeDummyData() {
 		List<Post> data = new ArrayList<>();
 		for (int i = 1; i <= 50; i++) {
